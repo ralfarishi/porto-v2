@@ -1,0 +1,21 @@
+
+> portfolio-test@0.1.0 build
+> next build
+
+   Γû▓ Next.js 15.5.6
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully in 3.7s
+   Skipping linting
+   Checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/13) ...
+   Generating static pages (3/13) 
+   Generating static pages (6/13) 
+Error occurred prerendering page "/blogs/nextjs-14". Read more: https://nextjs.org/docs/messages/prerender-error
+TypeError: Cannot read properties of null (reading 'useState')
+    at stringify (<anonymous>) {
+  digest: '3982233280'
+}
+Export encountered an error on /blogs/[slug]/page: /blogs/nextjs-14, exiting the build.
+ Γ¿» Next.js build worker exited with code: 1 and signal: null
