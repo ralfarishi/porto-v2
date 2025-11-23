@@ -35,7 +35,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
 				</Button>
 			</motion.div>
 
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+			<div className="flex flex-wrap justify-center gap-6">
 				{projects.map((project, index) => (
 					<motion.div
 						key={project.slug}
@@ -43,6 +43,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.5, delay: index * 0.1 }}
+						className="w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
 					>
 						<ProjectCard project={project} />
 					</motion.div>

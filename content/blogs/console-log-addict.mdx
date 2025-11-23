@@ -1,0 +1,53 @@
+---
+title: "Confessions of a console.log Addict"
+description: "I have a problem. My terminal is full of 'here', 'test', and '[object Object]'. Send help (or a debugger)."
+date: "2024-03-15"
+tags: ["JavaScript", "Debugging", "Mental Health"]
+image: "/coming-soon.jpg"
+---
+
+# Confessions of a `console.log` Addict
+
+My name is [Your Name], and I am a `console.log` addict.
+
+It started innocently enough. Just a quick `console.log(data)` to see what the API returned. It felt good. I felt in control.
+
+## The Spiral
+
+Soon, one log wasn't enough. I needed to know _where_ I was in the code.
+
+```javascript
+console.log("here");
+// ... 5 lines later
+console.log("here 2");
+// ... inside the if statement
+console.log("AM I HERE???");
+```
+
+My terminal became a stream of consciousness. A diary of my descent into madness.
+
+## Rock Bottom
+
+I hit rock bottom last Tuesday. I was debugging a race condition. I looked at my console, and I saw it:
+
+```javascript
+console.log("please work", pleaseWork);
+console.log("why is this null", why);
+console.log("AAAAAAAAAAAAAAAAAAAA");
+```
+
+I realized I wasn't debugging code anymore. I was screaming into the void, and the void was printing `undefined`.
+
+## Recovery
+
+I'm trying to use the debugger now. Breakpoints. Step over. Step into. It's hard. It feels... sterile. I miss the chaos of a thousand logs flying by at 60fps.
+
+But I'm taking it one day at a time.
+
+:::info
+**Tip**: If you must log, at least use `console.table()`. It makes your addiction look professional.
+:::
+
+:::info
+**Relapse Warning**: `debugger` statements are a gateway drug to actual understanding. Proceed with caution.
+:::

@@ -21,7 +21,7 @@ export function Callout({ type = "info", title, children }: CalloutProps) {
 
 	return (
 		<div
-			className={cn("my-6 flex items-start gap-3 rounded-lg border p-4", {
+			className={cn("my-2.5 flex items-start gap-3 rounded-lg border p-4", {
 				"border-blue-500/20 bg-blue-500/10 text-blue-500": type === "info",
 				"border-yellow-500/20 bg-yellow-500/10 text-yellow-500": type === "warning",
 				"border-red-500/20 bg-red-500/10 text-red-500": type === "danger",

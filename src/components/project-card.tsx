@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowUpRight, Github } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -17,65 +19,77 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
 	return (
-		<Card className="group flex flex-col h-full overflow-hidden border-muted/50 bg-background/50 backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-lg">
-			<div className="aspect-video w-full overflow-hidden bg-muted">
-				{/* Placeholder for image if not present */}
-				{project.image ? (
-					<div
-						className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-						style={{ backgroundImage: `url(${project.image})` }}
-					/>
-				) : (
-					<div className="w-full h-full flex items-center justify-center text-muted-foreground">
-						No Image
-					</div>
-				)}
-			</div>
-			<CardHeader>
-				<div className="flex items-center justify-between gap-2">
-					<CardTitle className="line-clamp-1 text-xl font-heading">{project.title}</CardTitle>
-					<Link
-						href={`/projects/${project.slug}`}
-						className="text-muted-foreground hover:text-primary transition-colors"
-					>
-						<ArrowUpRight className="h-5 w-5" />
-						<span className="sr-only">View Project</span>
-					</Link>
-				</div>
-				<CardDescription className="line-clamp-2">{project.description}</CardDescription>
-			</CardHeader>
-			<CardContent className="flex-1">
-				<div className="flex flex-wrap gap-2">
-					{(project.techStack || []).slice(0, 3).map((tech) => (
-						<Badge key={tech} variant="secondary" className="rounded-md">
-							{tech}
-						</Badge>
-					))}
-					{(project.techStack || []).length > 3 && (
-						<Badge variant="outline" className="rounded-md">
-							+{(project.techStack || []).length - 3}
-						</Badge>
+		<Link href={`/projects/${project.slug}`} className="block h-full">
+			<Card className="group flex flex-col h-full overflow-hidden border-border/50 bg-card hover:bg-card/80 transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
+				<div className="relative aspect-video w-full overflow-hidden bg-muted">
+					{/* Placeholder for image if not present */}
+					{project.image ? (
+						<div
+							className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+							style={{ backgroundImage: `url(${project.image})` }}
+						/>
+					) : (
+						<div className="w-full h-full flex items-center justify-center text-muted-foreground bg-secondary/30">
+							No Image
+						</div>
 					)}
+					<div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
 				</div>
-			</CardContent>
-			<CardFooter className="border-t bg-muted/20 p-4">
-				<div className="flex items-center gap-4 w-full">
-					{project.repo && (
-						<Link
-							href={project.repo}
-							target="_blank"
-							rel="noreferrer"
-							className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-						>
-							<Github className="h-4 w-4" />
-							<span>Source</span>
-						</Link>
-					)}
-					<div className="ml-auto text-xs text-muted-foreground">
-						{new Date(project.date).toLocaleDateString()}
+				<CardHeader className="relative z-10">
+					<div className="flex items-center justify-between gap-2">
+						<CardTitle className="line-clamp-1 text-xl font-heading text-foreground group-hover:text-primary transition-colors">
+							{project.title}
+						</CardTitle>
+						<div className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary">
+							<ArrowUpRight className="h-5 w-5" />
+							<span className="sr-only">View Project</span>
+						</div>
 					</div>
-				</div>
-			</CardFooter>
-		</Card>
+					<CardDescription className="line-clamp-2 text-muted-foreground/80">
+						{project.description}
+					</CardDescription>
+				</CardHeader>
+				<CardContent className="flex-1">
+					<div className="flex flex-wrap gap-2">
+						{(project.techStack || []).slice(0, 3).map((tech) => (
+							<Badge
+								key={tech}
+								variant="secondary"
+								className="rounded-full px-3 font-normal bg-secondary/50 hover:bg-secondary text-secondary-foreground"
+							>
+								{tech}
+							</Badge>
+						))}
+						{(project.techStack || []).length > 3 && (
+							<Badge variant="outline" className="rounded-full px-3 font-normal">
+								+{(project.techStack || []).length - 3}
+							</Badge>
+						)}
+					</div>
+				</CardContent>
+				<CardFooter className="border-t border-border/40 bg-muted/30 p-4">
+					<div className="flex items-center gap-4 w-full">
+						{project.repo && (
+							<div
+								onClick={(e) => {
+									e.stopPropagation();
+									window.open(project.repo, "_blank");
+								}}
+								className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer z-20 relative"
+							>
+								<Github className="h-4 w-4" />
+								<span>Source</span>
+							</div>
+						)}
+						<div className="ml-auto text-xs text-muted-foreground font-medium">
+							{new Date(project.date).toLocaleDateString(undefined, {
+								year: "numeric",
+								month: "short",
+							})}
+						</div>
+					</div>
+				</CardFooter>
+			</Card>
+		</Link>
 	);
 }

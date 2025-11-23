@@ -34,7 +34,7 @@ export function FeaturedBlogs({ blogs }: FeaturedBlogsProps) {
 				</Button>
 			</motion.div>
 
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+			<div className="flex flex-wrap justify-center gap-6">
 				{blogs.map((blog, index) => (
 					<motion.div
 						key={blog.slug}
@@ -42,6 +42,7 @@ export function FeaturedBlogs({ blogs }: FeaturedBlogsProps) {
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.5, delay: index * 0.1 }}
+						className="w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
 					>
 						<BlogCard blog={blog} />
 					</motion.div>

@@ -1,6 +1,7 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { cn } from "@/lib/utils";
 import { Callout } from "@/components/callout";
+import { Gallery } from "@/components/gallery";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
@@ -57,17 +58,16 @@ export function MdxContent({ mdxSource }: MdxContentProps) {
 		),
 		code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
 			<code
-				className={cn(
-					"relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold",
-					className
-				)}
+				className={cn("relative rounded font-mono text-sm font-semibold", className)}
 				{...props}
 			/>
 		),
 		pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
-			<pre className={cn("overflow-x-auto rounded-lg border p-4", className)} {...props} />
+			<pre className={cn("overflow-x-auto rounded-lg border p-2", className)} {...props} />
 		),
 		Callout,
+		Gallery,
+		Galleries: Gallery,
 	};
 
 	return (

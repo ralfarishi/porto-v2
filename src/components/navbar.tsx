@@ -13,7 +13,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/com
 const navItems = [
 	{ name: "Projects", href: "/projects" },
 	{ name: "Blogs", href: "/blogs" },
-	{ name: "Contact", href: "#contact" },
+	{ name: "Contact", href: "/#contact" },
 ];
 
 export function Navbar() {
@@ -31,32 +31,38 @@ export function Navbar() {
 	return (
 		<header
 			className={cn(
-				"fixed top-0 z-50 w-full transition-all duration-300",
+				"fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-auto md:min-w-[600px] max-w-5xl rounded-full border border-border/40 transition-all duration-300",
 				isScrolled
-					? "bg-background/80 backdrop-blur-md border-b shadow-sm py-2"
-					: "bg-transparent py-4"
+					? "bg-background/70 backdrop-blur-xl shadow-md py-2"
+					: "bg-background/40 backdrop-blur-md py-3"
 			)}
 		>
-			<div className="container mx-auto px-4 flex items-center justify-between">
-				<Link href="/" className="flex items-center gap-2">
-					<span className="font-heading text-2xl font-bold tracking-tight">John Doe</span>
+			<div className="px-6 flex items-center justify-between">
+				<Link href="/" className="flex items-center gap-2 mr-8">
+					<span className="font-heading text-xl font-bold tracking-tight text-foreground">
+						Anton Rayne
+					</span>
 				</Link>
 
 				{/* Desktop Nav */}
-				<nav className="hidden md:flex items-center gap-6">
+				<nav className="hidden md:flex items-center gap-1">
 					{navItems.map((item) => (
 						<Link
 							key={item.href}
 							href={item.href}
 							className={cn(
-								"text-sm font-medium transition-colors hover:text-primary",
-								pathname === item.href ? "text-primary" : "text-muted-foreground"
+								"px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-primary/10 hover:text-primary",
+								pathname === item.href
+									? "bg-primary/10 text-primary font-semibold"
+									: "text-muted-foreground"
 							)}
 						>
 							{item.name}
 						</Link>
 					))}
-					<ThemeToggle />
+					<div className="ml-2 pl-2 border-l border-border/50">
+						<ThemeToggle />
+					</div>
 				</nav>
 
 				{/* Mobile Nav */}
@@ -64,14 +70,16 @@ export function Navbar() {
 					<ThemeToggle />
 					<Sheet>
 						<SheetTrigger asChild>
-							<Button variant="ghost" size="icon">
+							<Button variant="ghost" size="icon" className="rounded-full">
 								<Menu className="h-5 w-5" />
 								<span className="sr-only">Toggle menu</span>
 							</Button>
 						</SheetTrigger>
-						<SheetContent side="right">
-							<SheetTitle className="font-heading text-xl font-bold mb-4">Menu</SheetTitle>
-							<div className="flex flex-col gap-4 mt-8">
+						<SheetContent side="top" className="w-full h-auto rounded-b-3xl pt-16 pb-8">
+							<SheetTitle className="font-heading text-xl font-bold mb-4 text-center">
+								Menu
+							</SheetTitle>
+							<div className="flex flex-col gap-4 items-center">
 								<SheetClose asChild>
 									<Link
 										href="/"

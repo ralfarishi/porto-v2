@@ -1,0 +1,59 @@
+---
+title: "CSS Battles: Flexbox vs Grid (The Cage Match)"
+description: "In the red corner, the one-dimensional wonder! In the blue corner, the two-dimensional titan! Let's get ready to rumble!"
+date: "2024-03-05"
+tags: ["CSS", "Flexbox", "Grid", "Wrestling"]
+image: "/coming-soon.jpg"
+---
+
+# CSS Battles: Flexbox vs Grid (The Cage Match)
+
+Ladies and gentlemen, welcome to the main event! Tonight, we settle the debate once and for all. How do you center a `div`? How do you build a layout without crying?
+
+## Round 1: Centering a Div
+
+**Flexbox** comes out swinging!
+
+```css
+display: flex;
+justify-content: center;
+align-items: center;
+```
+
+Three lines! Clean, efficient. The crowd goes wild!
+
+But wait! **Grid** enters the ring!
+
+```css
+display: grid;
+place-items: center;
+```
+
+TWO LINES! OH MY GOD! Grid just body-slammed Flexbox with a `place-items` suplex!
+
+## Round 2: The 12-Column Layout
+
+Flexbox is struggling. It's using `calc()`, it's using negative margins. It looks exhausted.
+
+Grid steps up. It looks calm.
+
+```css
+grid-template-columns: repeat(12, 1fr);
+gap: 1rem;
+```
+
+It's a massacre, folks. Flexbox is tapping out! Grid has locked in the `minmax()` submission hold!
+
+## The Verdict
+
+:::info
+**Winner by TKO: CSS Grid**
+:::
+
+:::danger
+**Disqualified**: `float: left` tried to enter the ring but collapsed due to a missing clearfix.
+:::
+
+But let's be real. They're best friends backstage. Flexbox handles the components, Grid handles the page. It's a tag team, not a rivalry.
+
+But don't tell them I said that. I want to see a rematch.

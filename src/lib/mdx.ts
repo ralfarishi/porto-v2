@@ -92,3 +92,17 @@ export function getBlog(slug: string): Blog | undefined {
 		...(data as unknown as Omit<Blog, "slug" | "content">),
 	};
 }
+
+export function getAdjacentBlogs(slug: string): { previous?: Blog; next?: Blog } {
+	const blogs = getBlogs();
+	const index = blogs.findIndex((blog) => blog.slug === slug);
+
+	if (index === -1) {
+		return {};
+	}
+
+	const previous = index < blogs.length - 1 ? blogs[index + 1] : undefined;
+	const next = index > 0 ? blogs[index - 1] : undefined;
+
+	return { previous, next };
+}

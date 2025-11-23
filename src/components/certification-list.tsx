@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const certifications = [
 	{
@@ -40,31 +39,35 @@ export function CertificationList() {
 			>
 				Certifications
 			</motion.h2>
-			<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+			<div className="max-w-2xl mx-auto flex flex-col gap-4">
 				{certifications.map((cert, index) => (
 					<motion.a
 						key={cert.name}
 						href={cert.url}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="block h-full group"
+						className="group relative flex flex-col md:flex-row md:items-center justify-between p-6 rounded-2xl border border-border/40 bg-card/30 hover:bg-card/50 hover:border-primary/20 transition-all duration-300"
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.5, delay: index * 0.1 }}
 					>
-						<Card className="bg-background/50 backdrop-blur-sm border-muted/50 group-hover:border-primary/50 transition-colors h-full py-4">
-							<CardHeader>
-								<div className="flex justify-between items-start mb-2">
-									<Badge variant="outline">{cert.badge}</Badge>
-									<span className="text-sm text-muted-foreground">{cert.date}</span>
-								</div>
-								<CardTitle className="font-heading text-lg">{cert.name}</CardTitle>
-							</CardHeader>
-							<CardContent>
-								<p className="text-muted-foreground">{cert.issuer}</p>
-							</CardContent>
-						</Card>
+						<div className="flex flex-col gap-1">
+							<h3 className="font-heading text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+								{cert.name}
+							</h3>
+							<p className="text-sm text-muted-foreground">{cert.issuer}</p>
+						</div>
+
+						<div className="flex items-center gap-4 mt-4 md:mt-0">
+							<Badge
+								variant="secondary"
+								className="bg-primary/5 text-primary hover:bg-primary/10 transition-colors"
+							>
+								{cert.badge}
+							</Badge>
+							<span className="text-sm font-mono text-muted-foreground/60">{cert.date}</span>
+						</div>
 					</motion.a>
 				))}
 			</div>

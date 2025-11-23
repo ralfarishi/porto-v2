@@ -5,10 +5,11 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
 export const metadata: Metadata = {
-	title: "John Doe - Portfolio",
-	description: "Portfolio of John Doe, a developer.",
+	title: "Anton Rayne - Portfolio",
+	description: "Portfolio of Anton Rayne, a developer.",
 };
 
 export default function RootLayout({
@@ -25,11 +26,13 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange
 				>
-					<div className="flex min-h-screen flex-col">
-						<Navbar />
-						<main className="flex-1">{children}</main>
-						<Footer />
-					</div>
+					<SmoothScroll>
+						<div className="flex min-h-screen flex-col">
+							<Navbar />
+							<main className="flex-1">{children}</main>
+							<Footer />
+						</div>
+					</SmoothScroll>
 				</ThemeProvider>
 			</body>
 		</html>

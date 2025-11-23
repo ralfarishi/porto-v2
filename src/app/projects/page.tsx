@@ -1,17 +1,41 @@
 import { getProjects } from "@/lib/mdx";
-import { ProjectCard } from "@/components/project-card";
+import { BentoGrid, BentoGridItem } from "@/components/bento-grid";
+import { Icons } from "@/components/icons";
+import Image from "next/image";
 
 export default function ProjectsPage() {
 	const projects = getProjects();
 
 	return (
 		<div className="container px-4 mx-auto py-20">
-			<h1 className="text-4xl md:text-5xl font-heading font-bold mb-8">All Projects</h1>
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-				{projects.map((project) => (
-					<ProjectCard key={project.slug} project={project} />
+			<h1 className="text-4xl md:text-5xl font-heading font-bold mb-12 mt-5 text-center">
+				All <span className="text-primary">Projects</span>
+			</h1>
+			<BentoGrid className="max-w-4xl mx-auto">
+				{projects.map((project, i) => (
+					<BentoGridItem
+						key={project.slug}
+						title={project.title}
+						description={project.description}
+						header={
+							<div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-muted/50 overflow-hidden relative group">
+								{project.image && (
+									<Image
+										src={project.image}
+										alt={project.title}
+										fill
+										className="object-cover transition-transform duration-500 group-hover:scale-105"
+									/>
+								)}
+								<div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors" />
+							</div>
+						}
+						className={i === 0 || i === 3 ? "md:col-span-2" : ""}
+						icon={<Icons.gitHub className="h-4 w-4 text-neutral-500" />}
+						href={`/projects/${project.slug}`}
+					/>
 				))}
-			</div>
+			</BentoGrid>
 		</div>
 	);
 }

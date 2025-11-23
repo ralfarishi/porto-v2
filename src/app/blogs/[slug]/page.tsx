@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Calendar } from "lucide-react";
-import { getBlog, getBlogs } from "@/lib/mdx";
+import { ArrowLeft, ArrowRight, Calendar } from "lucide-react";
+import { getBlog, getBlogs, getAdjacentBlogs } from "@/lib/mdx";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MdxContent } from "@/components/mdx-content";
@@ -23,6 +23,7 @@ export async function generateStaticParams() {
 export default async function BlogPage({ params }: BlogPageProps) {
 	const { slug } = await params;
 	const blog = getBlog(slug);
+	const adjacentBlogs = getAdjacentBlogs(slug);
 
 	if (!blog) {
 		notFound();
@@ -70,6 +71,39 @@ export default async function BlogPage({ params }: BlogPageProps) {
 					<Suspense fallback={<div className="animate-pulse h-96 bg-muted rounded-lg" />}>
 						<MdxContent mdxSource={blog.content} />
 					</Suspense>
+				</div>
+
+				<div className="mt-12 pt-8 border-t border-border/40 grid grid-cols-1 md:grid-cols-2 gap-6">
+					{adjacentBlogs.previous ? (
+						<Link
+							href={`/blogs/${adjacentBlogs.previous.slug}`}
+							className="group flex flex-col gap-2 p-4 rounded-xl border border-border/40 hover:bg-muted/30 transition-all"
+						>
+							<span className="text-sm text-muted-foreground flex items-center gap-1">
+								<ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+								Previous Article
+							</span>
+							<span className="font-heading font-bold text-lg line-clamp-2 group-hover:text-primary transition-colors">
+								{adjacentBlogs.previous.title}
+							</span>
+						</Link>
+					) : (
+						<div />
+					)}
+					{adjacentBlogs.next && (
+						<Link
+							href={`/blogs/${adjacentBlogs.next.slug}`}
+							className="group flex flex-col gap-2 p-4 rounded-xl border border-border/40 hover:bg-muted/30 transition-all text-right items-end"
+						>
+							<span className="text-sm text-muted-foreground flex items-center gap-1">
+								Next Article
+								<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+							</span>
+							<span className="font-heading font-bold text-lg line-clamp-2 group-hover:text-primary transition-colors">
+								{adjacentBlogs.next.title}
+							</span>
+						</Link>
+					)}
 				</div>
 			</article>
 		</div>

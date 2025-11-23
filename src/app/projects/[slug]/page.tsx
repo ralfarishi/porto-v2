@@ -31,104 +31,127 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 	}
 
 	return (
-		<div className="container px-4 mx-auto py-20">
-			<Button asChild variant="ghost" className="mb-8 gap-2 pl-0 hover:pl-2 transition-all">
-				<Link href="/projects">
-					<ArrowLeft className="h-4 w-4" /> Back to Projects
-				</Link>
-			</Button>
-
-			<div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-12">
-				<article>
-					<h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">{project.title}</h1>
-					<p className="text-xl text-muted-foreground mb-6">{project.description}</p>
-
-					<div className="flex flex-wrap gap-2 mb-8">
+		<div className="min-h-screen pb-20">
+			{/* Hero Section */}
+			<div className="relative w-full h-[50vh] min-h-[400px] flex flex-col justify-end pb-12 bg-muted/30 border-b border-border/50">
+				<div className="absolute inset-0 overflow-hidden">
+					{project.image && (
+						<>
+							<div
+								className="absolute inset-0 bg-cover bg-center blur-xl opacity-20 scale-110"
+								style={{ backgroundImage: `url(${project.image})` }}
+							/>
+							<div className="absolute inset-0 bg-linear-to-t from-background via-background/50 to-transparent" />
+						</>
+					)}
+				</div>
+				<div className="container px-6 mx-auto relative z-10">
+					<Button
+						asChild
+						variant="ghost"
+						className="mb-8 gap-2 pl-0 hover:pl-2 transition-all text-muted-foreground hover:text-foreground"
+					>
+						<Link href="/projects">
+							<ArrowLeft className="h-4 w-4" /> Back to Projects
+						</Link>
+					</Button>
+					<h1 className="text-4xl md:text-6xl font-heading font-bold mb-6 max-w-4xl leading-tight">
+						{project.title}
+					</h1>
+					<div className="flex flex-wrap gap-3 items-center">
 						{project.techStack?.map((tech) => (
-							<Badge key={tech} variant="secondary" className="text-sm">
+							<Badge
+								key={tech}
+								variant="secondary"
+								className="text-sm px-3 py-1 rounded-full bg-background/50 backdrop-blur-sm border border-border/50"
+							>
 								{tech}
 							</Badge>
 						))}
 					</div>
+				</div>
+			</div>
 
-					<div className="relative aspect-video w-full overflow-hidden rounded-xl border bg-muted mb-12">
-						{project.image ? (
-							<div
-								className="w-full h-full bg-cover bg-center"
-								style={{ backgroundImage: `url(${project.image})` }}
-							/>
-						) : (
-							<div className="flex flex-col justify-center h-full p-8 bg-muted/50">
-								<div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-									<Calendar className="h-4 w-4" />
-									<span>Released: {new Date(project.date).toLocaleDateString()}</span>
+			<div className="container px-6 mx-auto py-12">
+				<div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-16">
+					<article className="prose prose-lg prose-neutral dark:prose-invert max-w-none prose-headings:font-heading prose-headings:font-bold prose-p:text-muted-foreground prose-img:rounded-2xl prose-img:shadow-lg">
+						<p className="lead text-xl md:text-2xl text-foreground font-medium mb-8">
+							{project.description}
+						</p>
+
+						{project.image && (
+							<div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border/50 shadow-lg mb-12 bg-muted">
+								<div
+									className="w-full h-full bg-cover bg-center"
+									style={{ backgroundImage: `url(${project.image})` }}
+								/>
+							</div>
+						)}
+
+						<Suspense fallback={<div className="animate-pulse h-96 bg-muted/50 rounded-2xl" />}>
+							<MdxContent mdxSource={project.content} />
+						</Suspense>
+					</article>
+
+					<aside className="space-y-8 lg:sticky lg:top-32 h-fit">
+						<div className="rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm p-8 shadow-sm">
+							<h3 className="font-heading font-bold text-xl mb-6">Project Details</h3>
+							<div className="space-y-6">
+								<div className="flex items-center gap-3 text-muted-foreground">
+									<div className="p-2 rounded-full bg-primary/10 text-primary">
+										<Calendar className="h-5 w-5" />
+									</div>
+									<div className="flex flex-col">
+										<span className="text-xs font-medium uppercase tracking-wider opacity-70">
+											Released
+										</span>
+										<span className="font-medium text-foreground">
+											{new Date(project.date).toLocaleDateString(undefined, {
+												year: "numeric",
+												month: "long",
+												day: "numeric",
+											})}
+										</span>
+									</div>
 								</div>
 
-								<Separator className="mb-4" />
+								<Separator className="bg-border/50" />
 
 								<div className="flex flex-col gap-3">
 									{project.repo && (
-										<Button asChild variant="outline" className="w-full justify-start gap-2">
+										<Button
+											asChild
+											variant="outline"
+											className="w-full justify-start gap-3 h-12 rounded-xl border-border/50 hover:bg-primary/5 hover:text-primary hover:border-primary/30 transition-all"
+										>
 											<Link href={project.repo} target="_blank">
-												<Github className="h-4 w-4" /> Source Code
+												<Github className="h-5 w-5" /> Source Code
 											</Link>
 										</Button>
 									)}
 									{project.demo && (
-										<Button asChild className="w-full justify-start gap-2">
+										<Button
+											asChild
+											className="w-full justify-start gap-3 h-12 rounded-xl shadow-md hover:shadow-lg transition-all"
+										>
 											<Link href={project.demo} target="_blank">
-												<Globe className="h-4 w-4" /> Live Demo
+												<Globe className="h-5 w-5" /> Live Demo
 											</Link>
 										</Button>
 									)}
 								</div>
 							</div>
-						)}
-					</div>
-
-					<div className="prose prose-neutral dark:prose-invert max-w-none">
-						<Suspense fallback={<div className="animate-pulse h-96 bg-muted rounded-lg" />}>
-							<MdxContent mdxSource={project.content} />
-						</Suspense>
-					</div>
-				</article>
-
-				<aside className="space-y-8">
-					<div className="rounded-xl border bg-card p-6">
-						<h3 className="font-heading font-bold mb-4">Project Details</h3>
-						<div className="space-y-4">
-							<div className="flex items-center gap-2 text-sm text-muted-foreground">
-								<Calendar className="h-4 w-4" />
-								<span>Released: {new Date(project.date).toLocaleDateString()}</span>
-							</div>
-
-							<Separator />
-
-							<div className="flex flex-col gap-3">
-								{project.repo && (
-									<Button asChild variant="outline" className="w-full justify-start gap-2">
-										<Link href={project.repo} target="_blank">
-											<Github className="h-4 w-4" /> Source Code
-										</Link>
-									</Button>
-								)}
-								{project.demo && (
-									<Button asChild className="w-full justify-start gap-2">
-										<Link href={project.demo} target="_blank">
-											<Globe className="h-4 w-4" /> Live Demo
-										</Link>
-									</Button>
-								)}
-							</div>
 						</div>
-					</div>
 
-					{project.repo && (
-						<Suspense fallback={<div className="h-32 rounded-xl border bg-muted animate-pulse" />}>
-							<CommitInfo repo={project.repo} />
-						</Suspense>
-					)}
-				</aside>
+						{project.repo && (
+							<Suspense
+								fallback={<div className="h-32 rounded-2xl border bg-muted/50 animate-pulse" />}
+							>
+								<CommitInfo repo={project.repo} />
+							</Suspense>
+						)}
+					</aside>
+				</div>
 			</div>
 		</div>
 	);

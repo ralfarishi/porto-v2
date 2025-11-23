@@ -1,0 +1,55 @@
+---
+title: "Next.js 14: Why I Broke Up with useEffect"
+description: "It's not you, it's me. Actually, it's Server Actions. A dramatic retelling of how I left client-side fetching for something more stable."
+date: "2024-02-20"
+tags: ["Next.js", "React", "Drama", "Server Actions"]
+image: "/coming-soon.jpg"
+---
+
+# Next.js 14: Why I Broke Up with useEffect
+
+It started like any other relationship. I needed data, and `useEffect` was there for me. We had our ups and downs—mostly dependency array issues—but we made it work.
+
+Then **Next.js 14** walked into the room.
+
+## The Encounter
+
+I saw **Server Actions** across the documentation. It looked simple, confident. "Execute server-side code directly from your components," it whispered.
+
+I felt a blush creep up my neck. "But... what about `isLoading` states? What about `fetch` inside `useEffect`?"
+
+Server Actions just smiled. "Baby, where we're going, we don't need API routes."
+
+## The Breakup
+
+I sat `useEffect` down.
+
+"Look," I said, "You're great. You really are. But I'm tired of the waterfalls. I'm tired of the flickering. I met someone else."
+
+`useEffect` cried. It threw a hydration error. It tried to cause an infinite loop to make me stay. But my mind was made up.
+
+## The New Life
+
+Now, I'm with Server Actions. It's different.
+
+```tsx filename="actions.ts"
+'use server'
+
+export async function createUser(formData: FormData) {
+  // Direct database access? In my component?
+  // It feels so wrong, yet so right.
+  await db.user.create({ data: ... })
+}
+```
+
+:::success
+**Relationship Status**: Married to Server Actions. We're expecting our first child, `revalidatePath`, next spring.
+:::
+
+:::info
+My therapist says I have "shiny object syndrome." I say I have "performance optimization goals."
+:::
+
+## Conclusion
+
+I still see `useEffect` sometimes, mostly for event listeners or third-party libraries. We nod politely. But the spark is gone. I'm a Server Component girl/boy now.
