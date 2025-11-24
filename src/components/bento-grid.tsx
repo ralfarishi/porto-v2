@@ -44,7 +44,7 @@ export const BentoGridItem = ({
 	const content = (
 		<>
 			<React.Fragment key="header">{header}</React.Fragment>
-			<div key="content" className="group-hover/bento:translate-x-2 transition duration-200">
+			<div key="content" className="group-hover/bento:translate-x-2">
 				<div className="flex items-center justify-between mb-2 mt-2">
 					{icon}
 					{label && (

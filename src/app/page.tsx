@@ -3,6 +3,7 @@ import { HomeBento } from "@/components/home-bento";
 import { CertificationList } from "@/components/certification-list";
 import { Contact } from "@/components/contact";
 import { getProjects, getBlogs } from "@/lib/mdx";
+import { AboutSection } from "@/components/about-section";
 
 export default function Home() {
 	const projects = getProjects().slice(0, 4);
@@ -11,10 +12,10 @@ export default function Home() {
 	return (
 		<main className="min-h-screen bg-background">
 			<Hero />
+			<AboutSection />
 			<HomeBento projects={projects} blogs={blogs} />
 			<CertificationList />
 			<Contact />
 		</main>
 	);
 }
-

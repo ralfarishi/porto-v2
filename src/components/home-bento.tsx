@@ -1,9 +1,10 @@
 "use client";
 
 import { BentoGrid, BentoGridItem } from "@/components/bento-grid";
-import { Icons } from "@/components/icons";
 import { Project, Blog } from "@/lib/mdx";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { Newspaper, SquareCode } from "lucide-react";
 
 interface HomeBentoProps {
 	projects: Project[];
@@ -12,10 +13,17 @@ interface HomeBentoProps {
 
 export function HomeBento({ projects, blogs }: HomeBentoProps) {
 	return (
-		<section className="container px-6 mx-auto py-20">
-			<h2 className="text-3xl md:text-5xl font-heading font-bold text-center mb-12">
+		<section className="container px-6 mx-auto py-10">
+			<motion.h2
+				initial={{ opacity: 0, y: 50 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.6 }}
+				viewport={{ once: true, margin: "-100px" }}
+				className="text-3xl md:text-5xl font-heading font-bold text-center mb-12"
+			>
 				Stuff I&apos;ve <span className="text-primary">Built</span>
-			</h2>
+			</motion.h2>
+
 			<BentoGrid className="max-w-6xl mx-auto">
 				{/* Featured Project 1 (Large) */}
 				{projects[0] && (
@@ -36,7 +44,7 @@ export function HomeBento({ projects, blogs }: HomeBentoProps) {
 							</div>
 						}
 						className="md:col-span-2 md:row-span-2"
-						icon={<Icons.gitHub className="h-4 w-4 text-neutral-500" />}
+						icon={<SquareCode className="h-4 w-4 text-neutral-500" />}
 						href={`/projects/${projects[0].slug}`}
 						label="Project"
 					/>
@@ -53,7 +61,7 @@ export function HomeBento({ projects, blogs }: HomeBentoProps) {
 							</div>
 						}
 						className="md:col-span-1"
-						icon={<Icons.mail className="h-4 w-4 text-neutral-500" />}
+						icon={<Newspaper className="h-4 w-4 text-neutral-500" />}
 						href={`/blogs/${blogs[0].slug}`}
 						label="Article"
 					/>
@@ -69,32 +77,11 @@ export function HomeBento({ projects, blogs }: HomeBentoProps) {
 							</div>
 						}
 						className="md:col-span-1"
-						icon={<Icons.mail className="h-4 w-4 text-neutral-500" />}
+						icon={<Newspaper className="h-4 w-4 text-neutral-500" />}
 						href={`/blogs/${blogs[1].slug}`}
 						label="Article"
 					/>
 				)}
-
-				{/* About / Tech Stack */}
-				<BentoGridItem
-					title="My Stack"
-					description="Tools I use."
-					header={
-						<div className="flex flex-wrap gap-2 p-4 min-h-24 rounded-xl bg-muted/30">
-							{["React", "Next.js", "TypeScript", "Tailwind", "Node.js"].map((tech) => (
-								<span
-									key={tech}
-									className="px-2 py-1 text-xs rounded-md bg-background border border-border"
-								>
-									{tech}
-								</span>
-							))}
-						</div>
-					}
-					className="md:col-span-1"
-					icon={<Icons.instagram className="h-4 w-4 text-neutral-500" />}
-					label="About"
-				/>
 
 				{/* Featured Project 2 */}
 				{projects[1] && (
@@ -114,7 +101,7 @@ export function HomeBento({ projects, blogs }: HomeBentoProps) {
 							</div>
 						}
 						className="md:col-span-1"
-						icon={<Icons.gitHub className="h-4 w-4 text-neutral-500" />}
+						icon={<SquareCode className="h-4 w-4 text-neutral-500" />}
 						href={`/projects/${projects[1].slug}`}
 						label="Project"
 					/>
@@ -137,8 +124,31 @@ export function HomeBento({ projects, blogs }: HomeBentoProps) {
 							</div>
 						}
 						className="md:col-span-1"
-						icon={<Icons.gitHub className="h-4 w-4 text-neutral-500" />}
+						icon={<SquareCode className="h-4 w-4 text-neutral-500" />}
 						href={`/projects/${projects[2].slug}`}
+						label="Project"
+					/>
+				)}
+
+				{projects[3] && (
+					<BentoGridItem
+						title={projects[3].title}
+						description={projects[3].description}
+						header={
+							<div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-muted/50 overflow-hidden relative group">
+								{projects[3].image && (
+									<Image
+										src={projects[3].image}
+										alt={projects[3].title}
+										fill
+										className="object-cover transition-transform duration-500 group-hover:scale-105"
+									/>
+								)}
+							</div>
+						}
+						className="md:col-span-1"
+						icon={<SquareCode className="h-4 w-4 text-neutral-500" />}
+						href={`/projects/${projects[3].slug}`}
 						label="Project"
 					/>
 				)}
