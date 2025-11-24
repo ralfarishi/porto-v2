@@ -1,0 +1,35 @@
+---
+title: "Building Scalable APIs with GraphQL"
+description: "Best practices for designing and implementing GraphQL APIs."
+date: "2024-01-20"
+image: "https://placehold.co/600x400/e10098/ffffff?text=GraphQL+APIs"
+tags: ["GraphQL", "API", "Backend"]
+---
+
+# Building Scalable APIs with GraphQL
+
+GraphQL offers a flexible alternative to REST. This article discusses how to design schemas that scale with your application.
+
+## Schema Design
+
+Designing a good schema is crucial. It serves as the contract between your client and server.
+
+:::warning
+Avoid deeply nested queries as they can impact performance.
+:::
+
+Example schema definition:
+
+```graphql
+type User {
+	id: ID!
+	name: String!
+	posts: [Post]
+}
+
+type Post {
+	id: ID!
+	title: String!
+	content: String
+}
+```

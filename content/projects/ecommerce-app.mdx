@@ -1,0 +1,38 @@
+---
+title: "E-Commerce Mobile App"
+description: "A cross-platform mobile application for a modern fashion brand."
+date: "2024-03-20"
+techStack: ["React Native", "Redux", "Node.js", "Stripe"]
+repo: "https://github.com/username/fashion-app"
+demo: "https://expo.dev/@username/fashion-app"
+image: "/coming-soon.jpg"
+---
+
+# E-Commerce Mobile App
+
+Built with React Native, this app offers a seamless shopping experience. It features a custom design system, smooth animations, and secure payment processing via Stripe.
+
+## Key Functionalities
+
+- User authentication
+- Product catalog with filtering
+- Shopping cart and checkout
+- Order history
+
+:::warning
+This app requires a valid Stripe API key to process payments in production mode.
+:::
+
+We use `Redux Toolkit` for state management. Here's a snippet of the cart slice:
+
+```javascript
+const cartSlice = createSlice({
+	name: "cart",
+	initialState: [],
+	reducers: {
+		addToCart(state, action) {
+			state.push(action.payload);
+		},
+	},
+});
+```

@@ -1,0 +1,31 @@
+---
+title: "Optimizing React Performance"
+description: "Tips and tricks to make your React applications fly."
+date: "2024-03-25"
+image: "https://placehold.co/600x400/61dafb/000000?text=React+Performance"
+tags: ["React", "Performance", "Optimization"]
+---
+
+# Optimizing React Performance
+
+Performance is key to a good user experience. In this guide, we'll cover common pitfalls and how to avoid them in your React apps.
+
+## Memoization
+
+Using `useMemo` and `useCallback` effectively can prevent unnecessary re-renders.
+
+:::danger
+Don't optimize prematurely! Measure performance issues before applying fixes.
+:::
+
+Example of `useMemo`:
+
+```javascript
+const expensiveValue = useMemo(() => {
+	return computeExpensiveValue(a, b);
+}, [a, b]);
+```
+
+## Virtualization
+
+For long lists, consider using windowing libraries like `react-window`.

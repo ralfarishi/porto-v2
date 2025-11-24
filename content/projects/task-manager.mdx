@@ -1,0 +1,35 @@
+---
+title: "Task Management Tool"
+description: "A collaborative task manager for remote teams."
+date: "2023-12-15"
+techStack: ["SvelteKit", "Supabase", "Tailwind CSS"]
+repo: "https://github.com/username/task-manager"
+demo: "https://task-manager-pro.vercel.app"
+image: "/coming-soon.jpg"
+---
+
+# Task Management Tool
+
+Designed for simplicity and collaboration, this tool helps teams stay organized. It supports real-time updates using Supabase subscriptions.
+
+## Capabilities
+
+- Kanban boards
+- Team chat
+- File sharing
+- Progress tracking
+
+:::warning
+Deleting a project will permanently remove all associated tasks and files. This action cannot be undone.
+:::
+
+Real-time subscriptions are set up in `onMount`:
+
+```javascript
+supabase
+	.channel("public:tasks")
+	.on("postgres_changes", { event: "*", schema: "public", table: "tasks" }, (payload) => {
+		console.log("Change received!", payload);
+	})
+	.subscribe();
+```

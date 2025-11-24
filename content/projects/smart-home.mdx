@@ -1,0 +1,36 @@
+---
+title: "Smart Home Controller"
+description: "IoT interface for managing smart home devices from a central hub."
+date: "2024-02-10"
+techStack: ["Vue.js", "Firebase", "MQTT", "Tailwind CSS"]
+repo: "https://github.com/username/smart-home"
+demo: "https://smart-home-hub.netlify.app"
+image: "/coming-soon.jpg"
+---
+
+# Smart Home Controller
+
+This application connects to various IoT devices using MQTT. Users can control lights, thermostat, and security cameras from a single intuitive interface.
+
+## Highlights
+
+- Device discovery
+- Scene automation
+- Energy consumption reports
+- Voice command integration
+
+:::danger
+Ensure your MQTT broker is secured with TLS to prevent unauthorized access to your home devices.
+:::
+
+The core connection logic is handled in `src/services/mqtt.js`:
+
+```javascript
+import mqtt from "mqtt";
+
+const client = mqtt.connect("wss://broker.hivemq.com:8000/mqtt");
+
+client.on("connect", () => {
+	console.log("Connected to MQTT broker");
+});
+```

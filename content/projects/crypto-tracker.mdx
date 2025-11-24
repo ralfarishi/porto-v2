@@ -1,0 +1,37 @@
+---
+title: "Crypto Portfolio Tracker"
+description: "Track your cryptocurrency investments across multiple exchanges."
+date: "2024-01-05"
+techStack: ["React", "GraphQL", "CoinGecko API", "Chakra UI"]
+repo: "https://github.com/username/crypto-tracker"
+demo: "https://crypto-tracker-v2.vercel.app"
+image: "/coming-soon.jpg"
+---
+
+# Crypto Portfolio Tracker
+
+A clean and fast portfolio tracker that aggregates data from multiple sources. It uses the CoinGecko API for real-time price updates.
+
+## Features
+
+- Multi-currency support
+- Profit/Loss calculation
+- Historical price charts
+- Dark mode support
+
+:::info
+Data is cached for 60 seconds to avoid hitting API rate limits.
+:::
+
+We use `Apollo Client` to fetch data:
+
+```javascript
+const GET_COIN_PRICES = gql`
+	query GetCoinPrices($ids: [String!]!) {
+		coins(ids: $ids) {
+			id
+			current_price
+		}
+	}
+`;
+```
