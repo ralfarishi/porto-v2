@@ -101,8 +101,8 @@ export function getAdjacentBlogs(slug: string): { previous?: Blog; next?: Blog }
 		return {};
 	}
 
-	const previous = index < blogs.length - 1 ? blogs[index + 1] : undefined;
-	const next = index > 0 ? blogs[index - 1] : undefined;
+	const previous = index > 0 ? blogs[index - 1] : undefined;
+	const next = index < blogs.length - 1 ? blogs[index + 1] : undefined;
 
 	return { previous, next };
 }

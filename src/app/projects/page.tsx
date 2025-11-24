@@ -1,7 +1,7 @@
 import { getProjects } from "@/lib/mdx";
 import { BentoGrid, BentoGridItem } from "@/components/bento-grid";
-import { Icons } from "@/components/icons";
 import Image from "next/image";
+import { SquareCode } from "lucide-react";
 
 export default function ProjectsPage() {
 	const projects = getProjects();
@@ -30,8 +30,8 @@ export default function ProjectsPage() {
 								<div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors" />
 							</div>
 						}
-						className={i === 0 || i === 3 ? "md:col-span-2" : ""}
-						icon={<Icons.gitHub className="h-4 w-4 text-neutral-500" />}
+						className={i % 4 === 0 || i % 4 === 3 ? "md:col-span-2" : ""}
+						icon={<SquareCode className="h-4 w-4 text-neutral-500" />}
 						href={`/projects/${project.slug}`}
 					/>
 				))}

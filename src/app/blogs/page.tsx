@@ -1,6 +1,6 @@
 import { getBlogs } from "@/lib/mdx";
 import { BentoGrid, BentoGridItem } from "@/components/bento-grid";
-import { Icons } from "@/components/icons";
+import { Newspaper } from "lucide-react";
 
 export default function BlogsPage() {
 	const blogs = getBlogs();
@@ -21,8 +21,8 @@ export default function BlogsPage() {
 								<p className="text-sm text-muted-foreground line-clamp-3">{blog.description}</p>
 							</div>
 						}
-						className={i === 0 || i === 3 ? "md:col-span-2" : ""}
-						icon={<Icons.mail className="h-4 w-4 text-neutral-500" />}
+						className={i % 4 === 0 || i % 4 === 3 ? "md:col-span-2" : ""}
+						icon={<Newspaper className="h-4 w-4 text-neutral-500" />}
 						href={`/blogs/${blog.slug}`}
 					/>
 				))}
