@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
@@ -21,7 +20,7 @@ export function ThemeToggle() {
 				<Button
 					variant="outline"
 					size="icon"
-					className="rounded-full border-0 bg-transparent hover:bg-accent/50"
+					className="rounded-full border-0 bg-transparent hover:bg-primary/50 hover:text-white"
 				>
 					<Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
 					<Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />

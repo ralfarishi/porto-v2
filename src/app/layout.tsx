@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import "@fontsource/stack-sans-notch";
-import "@fontsource/stack-sans-text";
+import "@fontsource/tektur";
+import "@fontsource/orbitron";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={`antialiased font-sans`}>
+			<body className={`antialiased font-mono`}>
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"

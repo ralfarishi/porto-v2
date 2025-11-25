@@ -1,32 +1,38 @@
 import { getBlogs } from "@/lib/mdx";
-import { BentoGrid, BentoGridItem } from "@/components/bento-grid";
-import { Newspaper } from "lucide-react";
+import { ManifestList, ManifestItem } from "@/components/manifest-list";
 
 export default function BlogsPage() {
 	const blogs = getBlogs();
 
 	return (
-		<div className="container px-4 mx-auto py-20">
-			<h1 className="text-4xl md:text-5xl font-heading font-bold mb-12 mt-5 text-center">
-				All <span className="text-primary">Articles</span>
-			</h1>
-			<BentoGrid className="max-w-4xl mx-auto">
+		<div className="container px-4 mx-auto py-5">
+			<div className="flex flex-col items-center mb-8 mt-5">
+				<div className="text-xs font-mono text-primary/50 mb-2 tracking-[0.5em] uppercase">
+					{"// TRANSMISSIONS_LOG"}
+				</div>
+				<h1 className="text-4xl md:text-5xl font-heading font-bold text-center uppercase tracking-widest relative">
+					<span className="absolute -left-8 top-0 text-primary/20 hidden md:block">[</span>
+					All <span className="text-primary">_Articles</span>
+					<span className="absolute -right-8 top-0 text-primary/20 hidden md:block">]</span>
+				</h1>
+			</div>
+			<ManifestList>
 				{blogs.map((blog, i) => (
-					<BentoGridItem
+					<ManifestItem
 						key={blog.slug}
+						index={i}
+						id={`LOG-${String(i + 1).padStart(3, "0")}`}
 						title={blog.title}
-						description={blog.date}
-						header={
-							<div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-muted/30 p-4">
-								<p className="text-sm text-muted-foreground line-clamp-3">{blog.description}</p>
-							</div>
-						}
-						className={i % 4 === 0 || i % 4 === 3 ? "md:col-span-2" : ""}
-						icon={<Newspaper className="h-4 w-4 text-neutral-500" />}
+						date={new Date(blog.date).toLocaleDateString(undefined, {
+							year: "numeric",
+							month: "2-digit",
+							day: "2-digit",
+						})}
+						tech={blog.tags}
 						href={`/blogs/${blog.slug}`}
 					/>
 				))}
-			</BentoGrid>
+			</ManifestList>
 		</div>
 	);
 }

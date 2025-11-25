@@ -1,41 +1,38 @@
 import { getProjects } from "@/lib/mdx";
-import { BentoGrid, BentoGridItem } from "@/components/bento-grid";
-import Image from "next/image";
-import { SquareCode } from "lucide-react";
+import { ManifestList, ManifestItem } from "@/components/manifest-list";
 
 export default function ProjectsPage() {
 	const projects = getProjects();
 
 	return (
-		<div className="container px-4 mx-auto py-20">
-			<h1 className="text-4xl md:text-5xl font-heading font-bold mb-12 mt-5 text-center">
-				All <span className="text-primary">Projects</span>
-			</h1>
-			<BentoGrid className="max-w-4xl mx-auto">
+		<div className="container px-4 mx-auto py-5">
+			<div className="flex flex-col items-center mb-8 mt-5">
+				<div className="text-xs font-mono text-primary/50 mb-2 tracking-[0.5em] uppercase">
+					{"// ARCHIVE_ACCESS_GRANTED"}
+				</div>
+				<h1 className="text-4xl md:text-5xl font-heading font-bold text-center uppercase tracking-widest relative">
+					<span className="absolute -left-8 top-0 text-primary/20 hidden md:block">[</span>
+					All <span className="text-primary">_Projects</span>
+					<span className="absolute -right-8 top-0 text-primary/20 hidden md:block">]</span>
+				</h1>
+			</div>
+			<ManifestList>
 				{projects.map((project, i) => (
-					<BentoGridItem
+					<ManifestItem
 						key={project.slug}
+						index={i}
+						id={`PRJ-${String(i + 1).padStart(3, "0")}`}
 						title={project.title}
-						description={project.description}
-						header={
-							<div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-muted/50 overflow-hidden relative group">
-								{project.image && (
-									<Image
-										src={project.image}
-										alt={project.title}
-										fill
-										className="object-cover transition-transform duration-500 group-hover:scale-105"
-									/>
-								)}
-								<div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors" />
-							</div>
-						}
-						className={i % 4 === 0 || i % 4 === 3 ? "md:col-span-2" : ""}
-						icon={<SquareCode className="h-4 w-4 text-neutral-500" />}
+						date={new Date(project.date).toLocaleDateString(undefined, {
+							year: "numeric",
+							month: "2-digit",
+							day: "2-digit",
+						})}
+						tech={project.techStack}
 						href={`/projects/${project.slug}`}
 					/>
 				))}
-			</BentoGrid>
+			</ManifestList>
 		</div>
 	);
 }

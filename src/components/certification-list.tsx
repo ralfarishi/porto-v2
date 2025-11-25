@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Badge } from "@/components/ui/badge";
-import { MagneticButton } from "./magnetic-button";
+import { HardwareModules, HardwareModule } from "./hardware-modules";
 
 const certifications = [
 	{
@@ -36,43 +35,23 @@ export function CertificationList() {
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true }}
 				transition={{ duration: 0.5 }}
-				className="text-3xl md:text-4xl font-heading font-bold mb-12 text-center"
+				className="text-3xl md:text-4xl font-heading font-bold mb-12 text-center uppercase tracking-widest"
 			>
-				Certifications
+				Certifications <span className="text-primary">{"//"}</span>
 			</motion.h2>
-			<div className="max-w-2xl mx-auto flex flex-col gap-4">
+			<HardwareModules>
 				{certifications.map((cert, index) => (
-					<MagneticButton key={cert.name}>
-						<motion.a
-							href={cert.url}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group relative flex flex-col md:flex-row md:items-center justify-between p-6 rounded-2xl border border-border/40 bg-card/30 hover:bg-card/50 hover:border-primary/20"
-							initial={{ opacity: 0, y: 20 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true }}
-							transition={{ duration: 0.5, delay: index * 0.1 }}
-						>
-							<div className="flex flex-col gap-1">
-								<h3 className="font-heading text-lg font-bold text-foreground group-hover:text-primary transition-colors">
-									{cert.name}
-								</h3>
-								<p className="text-sm text-muted-foreground">{cert.issuer}</p>
-							</div>
-
-							<div className="flex items-center gap-4 mt-4 md:mt-0">
-								<Badge
-									variant="secondary"
-									className="bg-primary/5 text-primary hover:bg-primary/10 transition-colors"
-								>
-									{cert.badge}
-								</Badge>
-								<span className="text-sm font-mono text-muted-foreground/60">{cert.date}</span>
-							</div>
-						</motion.a>
-					</MagneticButton>
+					<HardwareModule
+						key={cert.name}
+						index={index}
+						name={cert.name}
+						issuer={cert.issuer}
+						date={cert.date}
+						badge={cert.badge}
+						url={cert.url}
+					/>
 				))}
-			</div>
+			</HardwareModules>
 		</section>
 	);
 }

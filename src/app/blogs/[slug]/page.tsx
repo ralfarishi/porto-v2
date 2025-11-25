@@ -30,45 +30,59 @@ export default async function BlogPage({ params }: BlogPageProps) {
 	}
 
 	return (
-		<div className="container px-4 mx-auto py-20 max-w-3xl">
-			<Button asChild variant="ghost" className="mb-8 gap-2 pl-0 hover:pl-2 transition-all">
+		<div className="container px-4 mx-auto py-5 max-w-3xl">
+			<Button
+				asChild
+				variant="ghost"
+				className="mb-8 gap-2 pl-0 hover:pl-2 transition-all font-mono uppercase tracking-wider text-muted-foreground hover:text-primary"
+			>
 				<Link href="/blogs">
-					<ArrowLeft className="h-4 w-4" /> Back to Articles
+					<ArrowLeft className="h-4 w-4" /> Retreat to Articles
 				</Link>
 			</Button>
 
 			<article>
-				<div className="mb-8">
-					<div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-						<div className="flex items-center gap-1">
-							<Calendar className="h-4 w-4" />
+				<div className="mb-8 border-l-4 border-primary pl-6 py-2">
+					<div className="flex items-center gap-4 text-sm text-muted-foreground mb-4 font-mono uppercase tracking-wider">
+						<div className="flex items-center gap-2">
+							<Calendar className="h-4 w-4 text-primary" />
 							<span>{new Date(blog.date).toLocaleDateString()}</span>
 						</div>
-						<div className="flex items-center gap-2">
+						<div className="flex items-center gap-1">
 							{blog.tags?.map((tag) => (
-								<Badge key={tag} variant="outline" className="rounded-full text-xs font-normal">
+								<Badge
+									key={tag}
+									variant="outline"
+									className="rounded-none text-xs font-normal border-primary/30 text-primary"
+								>
 									{tag}
 								</Badge>
 							))}
 						</div>
 					</div>
-					<h1 className="text-4xl md:text-5xl font-heading font-bold mb-6 leading-tight">
+					<h1 className="text-4xl md:text-5xl font-heading font-bold mb-6 leading-tight uppercase tracking-tight relative">
 						{blog.title}
 					</h1>
-					<p className="text-xl text-muted-foreground leading-relaxed">{blog.description}</p>
+					<p className="text-xl text-muted-foreground leading-relaxed font-mono">
+						{"// "}
+						{blog.description}
+					</p>
 				</div>
 
 				{blog.image && (
-					<div className="relative aspect-video w-full overflow-hidden rounded-xl border bg-muted mb-12">
+					<div className="relative aspect-video w-full overflow-hidden rounded-none border border-border/50 bg-muted mb-12 group">
+						<div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary z-10" />
+						<div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary z-10" />
 						<div
-							className="w-full h-full bg-cover bg-center"
+							className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
 							style={{ backgroundImage: `url(${blog.image})` }}
 						/>
+						<div className="absolute inset-0 bg-grid-small-white/[0.1] pointer-events-none" />
 					</div>
 				)}
 
-				<div className="prose prose-neutral dark:prose-invert max-w-none">
-					<Suspense fallback={<div className="animate-pulse h-96 bg-muted rounded-lg" />}>
+				<div className="prose prose-invert max-w-none prose-headings:font-heading prose-headings:uppercase prose-headings:tracking-wide prose-p:font-mono prose-p:text-muted-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-none prose-img:border prose-img:border-primary/20">
+					<Suspense fallback={<div className="animate-pulse h-96 bg-muted rounded-none" />}>
 						<MdxContent mdxSource={blog.content} />
 					</Suspense>
 				</div>
@@ -77,13 +91,14 @@ export default async function BlogPage({ params }: BlogPageProps) {
 					{adjacentBlogs.previous ? (
 						<Link
 							href={`/blogs/${adjacentBlogs.previous.slug}`}
-							className="group flex flex-col gap-2 p-4 rounded-xl border border-border/40 hover:bg-muted/30 transition-all"
+							className="group flex flex-col gap-2 p-6 rounded-none border border-border/40 hover:border-primary/50 hover:bg-primary/5 transition-all relative overflow-hidden"
 						>
-							<span className="text-sm text-muted-foreground flex items-center gap-1">
-								<ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+							<div className="absolute left-0 top-0 bottom-0 w-1 bg-primary/0 group-hover:bg-primary transition-colors" />
+							<span className="text-sm text-muted-foreground flex items-center gap-1 font-mono uppercase tracking-wider">
+								<ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1 text-primary" />
 								Previous Article
 							</span>
-							<span className="font-heading font-bold text-lg line-clamp-2 group-hover:text-primary transition-colors">
+							<span className="font-heading font-bold text-lg line-clamp-2 group-hover:text-primary transition-colors uppercase">
 								{adjacentBlogs.previous.title}
 							</span>
 						</Link>
@@ -93,13 +108,14 @@ export default async function BlogPage({ params }: BlogPageProps) {
 					{adjacentBlogs.next && (
 						<Link
 							href={`/blogs/${adjacentBlogs.next.slug}`}
-							className="group flex flex-col gap-2 p-4 rounded-xl border border-border/40 hover:bg-muted/30 transition-all text-right items-end"
+							className="group flex flex-col gap-2 p-6 rounded-none border border-border/40 hover:border-primary/50 hover:bg-primary/5 transition-all text-right items-end relative overflow-hidden"
 						>
-							<span className="text-sm text-muted-foreground flex items-center gap-1">
+							<div className="absolute right-0 top-0 bottom-0 w-1 bg-primary/0 group-hover:bg-primary transition-colors" />
+							<span className="text-sm text-muted-foreground flex items-center gap-1 font-mono uppercase tracking-wider">
 								Next Article
-								<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+								<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 text-primary" />
 							</span>
-							<span className="font-heading font-bold text-lg line-clamp-2 group-hover:text-primary transition-colors">
+							<span className="font-heading font-bold text-lg line-clamp-2 group-hover:text-primary transition-colors uppercase">
 								{adjacentBlogs.next.title}
 							</span>
 						</Link>

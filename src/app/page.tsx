@@ -1,5 +1,5 @@
 import { Hero } from "@/components/hero";
-import { HomeBento } from "@/components/home-bento";
+import { HomeDashboard } from "@/components/home-dashboard";
 import { CertificationList } from "@/components/certification-list";
 import { Contact } from "@/components/contact";
 import { getProjects, getBlogs } from "@/lib/mdx";
@@ -13,7 +13,7 @@ export default function Home() {
 		<main className="min-h-screen bg-background">
 			<Hero />
 			<AboutSection />
-			<HomeBento projects={projects} blogs={blogs} />
+			<HomeDashboard projects={projects} blogs={blogs} />
 			<CertificationList />
 			<Contact />
 		</main>
