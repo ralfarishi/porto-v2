@@ -43,12 +43,12 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
 			<article>
 				<div className="mb-8 border-l-4 border-primary pl-6 py-2">
-					<div className="flex items-center gap-4 text-sm text-muted-foreground mb-4 font-mono uppercase tracking-wider">
+					<div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 text-sm text-muted-foreground mb-4 font-mono uppercase tracking-wider items-start">
 						<div className="flex items-center gap-2">
 							<Calendar className="h-4 w-4 text-primary" />
 							<span>{new Date(blog.date).toLocaleDateString()}</span>
 						</div>
-						<div className="flex items-center gap-1">
+						<div className="flex flex-wrap items-center gap-1">
 							{blog.tags?.map((tag) => (
 								<Badge
 									key={tag}

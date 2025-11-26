@@ -162,7 +162,7 @@ export function Navbar() {
 									</SheetClose>
 								))}
 							</div>
-							<div className="absolute bottom-8 left-6 right-6">
+							<div className="absolute bottom-4 left-6 right-6">
 								<div className="h-px w-full bg-primary/20 mb-4" />
 								<div className="flex justify-between text-xs font-mono text-muted-foreground">
 									<span>SYS: ONLINE</span>

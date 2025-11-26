@@ -44,7 +44,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 			<div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
 			{/* Hero Section */}
-			<div className="relative w-full border-b border-border/50 bg-muted/10 pt-10 pb-16">
+			<div className="relative w-full border-b border-border/50 bg-muted/10 pt-5 pb-16">
 				<div className="container px-6 mx-auto relative z-10">
 					<div className="flex flex-col gap-6">
 						<div className="flex flex-col md:flex-row items-start md:items-center justify-between">
