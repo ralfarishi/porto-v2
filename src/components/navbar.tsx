@@ -35,7 +35,7 @@ export function Navbar() {
 				isScrolled ? "shadow-[0px_4px_0px_0px_var(--foreground)]" : ""
 			)}
 		>
-			<div className="container flex h-16 items-center justify-between px-4 md:px-6 max-w-7xl mx-auto">
+			<div className="container flex h-18 items-center justify-between px-4 md:px-6 max-w-7xl mx-auto">
 				{/* Brand */}
 				<Link href="/" className="flex items-center gap-2 group">
 					<div className="bg-primary text-primary-foreground px-2 py-1 font-heading text-xl md:text-2xl uppercase tracking-wider transform group-hover:-rotate-2 transition-transform border-2 border-foreground shadow-[2px_2px_0px_0px_var(--foreground)]">
@@ -45,7 +45,7 @@ export function Navbar() {
 						<span className="font-heading font-bold text-lg leading-none uppercase tracking-widest">
 							Anton Rayne
 						</span>
-						<span className="text-[10px] font-mono font-bold uppercase tracking-widest text-muted-foreground">
+						<span className="text-[10px] font-mono font-bold uppercase tracking-widest text-muted-foreground mt-1">
 							Vol. 1
 						</span>
 					</div>
