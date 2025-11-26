@@ -9,7 +9,9 @@
 		"lint": "eslint"
 	},
 	"dependencies": {
+		"@fontsource/monoton": "^5.2.7",
 		"@fontsource/orbitron": "^5.2.8",
+		"@fontsource/righteous": "^5.2.7",
 		"@fontsource/stack-sans-notch": "^5.2.1",
 		"@fontsource/stack-sans-text": "^5.2.1",
 		"@fontsource/tektur": "^5.2.7",
@@ -41,6 +43,7 @@
 		"shiki": "^3.15.0",
 		"tailwind-merge": "^3.4.0",
 		"tailwindcss-animate": "^1.0.7",
+		"typeit-react": "^2.7.8",
 		"unist-util-visit": "^5.0.0",
 		"zod": "^3.23.8"
 	},

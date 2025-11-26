@@ -2,28 +2,32 @@
 
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Quote, Terminal, Cpu, History } from "lucide-react";
+import { Quote, Terminal, Cpu, History, Zap, BookOpen } from "lucide-react";
 
 const timeline = [
 	{
 		year: "1998",
-		title: "Unit_Initialized",
+		title: "Unit Initialized",
 		description: "Hello World! I arrived on Earth.",
+		icon: Zap,
 	},
 	{
 		year: "2016",
-		title: "First_Directive",
+		title: "First Directive",
 		description: "Wrote my first HTML tag. It was a marquee. I'm sorry.",
+		icon: Terminal,
 	},
 	{
 		year: "2020",
-		title: "System_Upgrade",
+		title: "System Upgrade",
 		description: "Started Computer Science degree. Learned that P != NP (probably).",
+		icon: BookOpen,
 	},
 	{
 		year: "2024",
-		title: "Deployment_Ready",
+		title: "Deployment Ready",
 		description: "Survived the pandemic and algorithms class. Ready to build.",
+		icon: Cpu,
 	},
 ];
 
@@ -40,52 +44,62 @@ const techStack = [
 
 export function AboutSection() {
 	return (
-		<section className="container px-6 mx-auto py-20 relative overflow-hidden">
-			{/* Background Grid */}
-			<div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+		<section className="container px-4 md:px-6 mx-auto py-20 relative overflow-hidden bg-background">
+			{/* Halftone Background */}
+			<div className="absolute inset-0 bg-[radial-gradient(#000000_1px,transparent_1px)] bg-size-[20px_20px] opacity-5 pointer-events-none" />
 
 			<motion.div
 				initial={{ opacity: 0, y: 20 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.6 }}
 				viewport={{ once: true }}
-				className="relative z-10 max-w-5xl mx-auto"
 			>
-				{/* Header */}
-				<div className="flex items-center gap-4 mb-16 border-b border-primary/20 pb-4">
-					<Terminal className="w-8 h-8 text-primary" />
-					<h2 className="text-3xl md:text-4xl font-heading font-bold uppercase tracking-widest">
-						System_<span className="text-primary">Specs</span>
-					</h2>
-					<div className="ml-auto text-xs font-mono text-muted-foreground hidden md:block">
-						ID: 8472-ALPHA
+				{/* Narration Box Header */}
+				<div className="max-w-3xl mx-auto mb-16 relative">
+					<div className="bg-yellow-400 border-4 border-foreground p-4 shadow-[8px_8px_0px_0px_var(--foreground)] rotate-1">
+						<h2 className="text-4xl md:text-5xl font-heading text-foreground uppercase tracking-widest text-center leading-none">
+							The Origin Story
+						</h2>
+						<p className="font-sans font-bold text-sm uppercase tracking-widest text-center mt-2">
+							How it all began...
+						</p>
+					</div>
+					<div className="absolute -top-6 -left-6 hidden md:block">
+						<div className="bg-card border-4 border-foreground px-4 py-2 shadow-[4px_4px_0px_0px_var(--foreground)] -rotate-6">
+							<span className="font-heading text-xl">Vol. 1</span>
+						</div>
 					</div>
 				</div>
 
 				<div className="grid md:grid-cols-2 gap-16">
-					{/* Timeline / Changelog */}
+					{/* Timeline */}
 					<div className="space-y-8">
-						<div className="flex items-center gap-2 mb-6">
-							<History className="w-5 h-5 text-primary" />
-							<h3 className="text-xl font-heading font-bold uppercase tracking-wider">Changelog</h3>
+						<div className="flex items-center gap-2 mb-6 bg-foreground text-background p-2 w-fit -rotate-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]">
+							<History className="w-6 h-6" />
+							<h3 className="text-2xl font-heading uppercase tracking-wider">Plot Twists</h3>
 						</div>
 
-						<div className="relative border-l-2 border-primary/20 ml-3 space-y-12">
+						<div className="relative space-y-8">
+							{/* Vertical Line */}
+							<div className="absolute left-[19px] top-0 bottom-0 w-1 bg-foreground" />
+
 							{timeline.map((item, index) => (
-								<ScrollReveal key={index} className="ml-8 relative">
+								<ScrollReveal key={index} className="relative pl-12">
 									{/* Timeline Node */}
-									<div className="absolute -left-[41px] top-1 w-5 h-5 bg-background border-2 border-primary rounded-full flex items-center justify-center">
-										<div className="w-2 h-2 bg-primary rounded-full" />
+									<div className="absolute left-0 top-0 w-10 h-10 bg-card border-4 border-foreground rounded-full flex items-center justify-center z-10">
+										<item.icon className="w-5 h-5 text-foreground" />
 									</div>
 
-									<div className="flex flex-col gap-1">
-										<span className="text-xs font-mono text-primary/60 uppercase tracking-widest">
-											[{item.year}]
-										</span>
-										<h4 className="text-lg font-bold font-heading uppercase text-foreground">
-											{item.title}
-										</h4>
-										<p className="text-muted-foreground font-mono text-sm mt-1 border-l border-border/50 pl-4">
+									<div className="bg-card border-4 border-foreground p-4 shadow-[8px_8px_0px_0px_var(--foreground)] hover:-translate-y-1 transition-transform relative group">
+										<div className="flex justify-between items-start mb-2 border-b-2 border-foreground pb-2">
+											<h4 className="text-xl font-heading uppercase text-foreground">
+												{item.title}
+											</h4>
+											<span className="font-sans font-bold bg-primary text-primary-foreground text-xs px-2 py-1 border-2 border-foreground -rotate-2">
+												{item.year}
+											</span>
+										</div>
+										<p className="text-muted-foreground font-sans text-sm font-medium">
 											{item.description}
 										</p>
 									</div>
@@ -94,23 +108,22 @@ export function AboutSection() {
 						</div>
 					</div>
 
-					{/* Tech Stack / Modules */}
+					{/* Tech Stack / Superpowers */}
 					<div>
-						<div className="flex items-center gap-2 mb-8">
-							<Cpu className="w-5 h-5 text-primary" />
-							<h3 className="text-xl font-heading font-bold uppercase tracking-wider">
-								Installed_Modules
-							</h3>
+						<div className="flex items-center gap-2 mb-8 bg-foreground text-background p-2 w-fit rotate-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]">
+							<Cpu className="w-6 h-6" />
+							<h3 className="text-2xl font-heading uppercase tracking-wider">Superpowers</h3>
 						</div>
 
-						<div className="grid grid-cols-2 gap-2">
+						<div className="grid grid-cols-2 gap-4">
 							{techStack.map((tech, index) => (
 								<ScrollReveal key={tech} className="w-full" delay={index * 0.05}>
-									<div className="group relative bg-card/30 border border-border/50 p-3 hover:border-primary/50 transition-all overflow-hidden">
-										<div className="absolute inset-0 bg-primary/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+									<div className="group relative bg-card border-4 border-foreground p-3 hover:bg-primary hover:text-primary-foreground transition-all overflow-hidden shadow-[4px_4px_0px_0px_var(--foreground)] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_var(--foreground)]">
 										<div className="relative z-10 flex justify-between items-center">
-											<span className="font-mono text-sm uppercase tracking-wider">{tech}</span>
-											<div className="w-1.5 h-1.5 bg-primary/20 group-hover:bg-primary rounded-full transition-colors" />
+											<span className="font-sans font-bold text-sm uppercase tracking-wider">
+												{tech}
+											</span>
+											<div className="w-3 h-3 border-2 border-foreground bg-card group-hover:bg-foreground rounded-full transition-colors" />
 										</div>
 									</div>
 								</ScrollReveal>
@@ -119,15 +132,15 @@ export function AboutSection() {
 
 						{/* Quote / Status */}
 						<ScrollReveal className="mt-16">
-							<div className="relative p-6 border border-primary/20 bg-primary/5">
-								<Quote className="absolute -top-3 -left-3 w-6 h-6 text-primary bg-background p-1" />
-								<p className="font-mono text-sm md:text-base text-muted-foreground leading-relaxed italic">
-									&quot;The best way to predict the future is to invent it. Or at least write clean
-									code that doesn&apos;t break when you look at it wrong.&quot;
+							<div className="relative p-8 border-4 border-foreground bg-card shadow-[12px_12px_0px_0px_var(--foreground)] clip-jagged">
+								<Quote className="absolute -top-6 -left-2 w-10 h-10 text-foreground bg-yellow-400 border-4 border-foreground p-1 shadow-[4px_4px_0px_0px_var(--foreground)] -rotate-12" />
+								<p className="font-sans text-lg md:text-xl text-foreground leading-relaxed font-bold uppercase text-center">
+									&quot;I write code so clean, even my vacuum is jealous. But seriously, I build
+									things that work, look good, and don&apos;t explode.&quot;
 								</p>
-								<div className="mt-4 flex justify-end">
-									<span className="text-xs font-mono text-primary uppercase">
-										{"// STATUS: OPTIMIZED"}
+								<div className="mt-6 flex justify-center">
+									<span className="text-xs font-mono font-bold text-background bg-foreground px-4 py-1 border-2 border-background shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)]">
+										NO PUN INTENDED
 									</span>
 								</div>
 							</div>

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Cpu } from "lucide-react";
+import { Award, Shield, Star } from "lucide-react";
 
 interface ModuleProps {
 	name: string;
@@ -15,7 +15,7 @@ interface ModuleProps {
 
 export const HardwareModules = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<div className="flex flex-wrap justify-center gap-2 max-w-5xl mx-auto py-1">{children}</div>
+		<div className="flex flex-wrap justify-center gap-6 max-w-5xl mx-auto py-4">{children}</div>
 	);
 };
 
@@ -25,51 +25,47 @@ export const HardwareModule = ({ name, issuer, date, badge, url, index }: Module
 			href={url}
 			target="_blank"
 			rel="noopener noreferrer"
-			className="group relative w-full md:w-72 h-40 bg-card border border-border/50 hover:border-primary/50 overflow-hidden flex flex-col justify-between p-4"
-			initial={{ opacity: 0, scale: 0.9 }}
-			whileInView={{ opacity: 1, scale: 1 }}
+			className="group relative w-full md:w-80 h-auto bg-card border-4 border-foreground p-4 shadow-[8px_8px_0px_0px_var(--foreground)] hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_var(--foreground)] transition-all flex flex-col"
+			initial={{ opacity: 0, scale: 0.9, rotate: index % 2 === 0 ? -1 : 1 }}
+			whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
 			transition={{ duration: 0.4, delay: index * 0.1 }}
 			viewport={{ once: true }}
 		>
-			{/* Circuit Pattern Background */}
-			<div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#333_1px,transparent_1px)] bg-size-[10px_10px]" />
-
-			{/* Top Label */}
-			<div className="flex justify-between items-start relative z-10">
-				<div className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest border border-primary/20 px-1 bg-primary/5">
-					MOD_ID: {index.toString().padStart(4, "0")}
+			{/* Badge Header */}
+			<div className="flex justify-between items-center mb-4 border-b-4 border-foreground pb-2">
+				<div className="bg-black text-white px-2 py-1 font-heading text-sm uppercase tracking-wider -rotate-2">
+					{badge}
 				</div>
-				<div className="flex items-center gap-2">
-					<span className="text-[10px] font-mono text-primary/60 border border-primary/20 px-1">
-						{badge}
-					</span>
-					<Cpu className="w-4 h-4 text-primary/40 group-hover:text-primary transition-colors" />
-				</div>
+				<Shield className="w-6 h-6 text-foreground" />
 			</div>
 
 			{/* Main Content */}
-			<div className="relative z-10">
-				<h3 className="font-heading font-bold text-lg leading-tight uppercase group-hover:text-primary transition-colors">
+			<div className="flex-1 flex flex-col gap-2 mb-4">
+				<h3 className="font-heading font-bold text-2xl leading-none uppercase text-foreground group-hover:text-primary transition-colors">
 					{name}
 				</h3>
-				<div className="flex justify-between items-end mt-1">
-					<p className="text-xs font-mono text-muted-foreground">{issuer}</p>
-					<p className="text-[10px] font-mono text-muted-foreground/50">{date}</p>
+				<div className="flex items-center gap-2 mt-auto">
+					<Award className="w-4 h-4 text-muted-foreground" />
+					<p className="text-sm font-sans font-bold text-muted-foreground uppercase">{issuer}</p>
 				</div>
 			</div>
 
-			{/* Bottom Connectors */}
-			<div className="absolute bottom-0 left-0 right-0 h-2 flex justify-center gap-1">
-				{Array.from({ length: 12 }).map((_, i) => (
-					<div
-						key={i}
-						className="w-2 h-full bg-primary/20 group-hover:bg-primary/60 transition-colors rounded-t-sm"
-					/>
-				))}
+			{/* Footer / Stats */}
+			<div className="bg-accent border-2 border-foreground p-2 flex justify-between items-center">
+				<span className="text-[10px] text-neutral-100 font-mono font-bold uppercase">
+					Acquired: {date}
+				</span>
+				<div className="flex gap-1">
+					<Star className="w-3 h-3 text-accent-foreground fill-accent-foreground" />
+					<Star className="w-3 h-3 text-accent-foreground fill-accent-foreground" />
+					<Star className="w-3 h-3 text-accent-foreground fill-accent-foreground" />
+				</div>
 			</div>
 
-			{/* Status LED */}
-			<div className="absolute top-2 right-2 w-1 h-1 rounded-full bg-primary animate-pulse shadow-[0_0_5px_rgba(var(--primary),0.5)]" />
+			{/* Decorative Corner */}
+			<div className="absolute -top-2 -right-2 w-6 h-6 bg-accent border-2 border-foreground rounded-full flex items-center justify-center z-20 shadow-sm">
+				<span className="font-heading text-xs text-neutral-100">+1</span>
+			</div>
 		</motion.a>
 	);
 };

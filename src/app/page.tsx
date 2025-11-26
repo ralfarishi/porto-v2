@@ -10,12 +10,18 @@ export default function Home() {
 	const blogs = getBlogs().slice(0, 4);
 
 	return (
-		<main className="min-h-screen bg-background">
+		<main className="min-h-screen bg-background relative">
+			{/* Page Fold Shadow Effect */}
+			<div className="fixed inset-y-0 left-0 w-1 bg-linear-to-r from-black/20 to-transparent pointer-events-none z-50 md:hidden" />
+
 			<Hero />
-			<AboutSection />
-			<HomeDashboard projects={projects} blogs={blogs} />
-			<CertificationList />
-			<Contact />
+
+			<div className="space-y-0">
+				<AboutSection />
+				<HomeDashboard projects={projects} blogs={blogs} />
+				<CertificationList />
+				<Contact />
+			</div>
 		</main>
 	);
 }

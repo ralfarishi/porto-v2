@@ -1,7 +1,5 @@
 export async function getLatestCommit(repoUrl: string) {
 	try {
-		// Extract owner and repo from URL
-		// Format: https://github.com/owner/repo
 		const match = repoUrl.match(/github\.com\/([^/]+)\/([^/]+)/);
 		if (!match) return null;
 
@@ -9,7 +7,7 @@ export async function getLatestCommit(repoUrl: string) {
 		const response = await fetch(
 			`https://api.github.com/repos/${owner}/${repo}/commits?per_page=1`,
 			{
-				next: { revalidate: 3600 }, // Revalidate every hour
+				next: { revalidate: 3600 },
 			}
 		);
 
@@ -22,6 +20,7 @@ export async function getLatestCommit(repoUrl: string) {
 			date: data[0].commit.author.date,
 			message: data[0].commit.message,
 			sha: data[0].sha,
+			html_url: data[0].html_url,
 		};
 	} catch (error) {
 		console.error("Error fetching commit:", error);

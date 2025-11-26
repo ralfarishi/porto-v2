@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import "@fontsource/tektur";
-import "@fontsource/orbitron";
+import "@fontsource/monoton";
+import "@fontsource/righteous";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { ComicEffects } from "@/components/comic-effects";
 
 export const metadata: Metadata = {
 	title: "Anton Rayne - Portfolio",
@@ -19,7 +20,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={`antialiased font-mono`}>
+			<body className={`antialiased font-sans bg-background text-foreground`}>
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"
@@ -27,6 +28,7 @@ export default function RootLayout({
 					disableTransitionOnChange
 				>
 					<SmoothScroll>
+						<ComicEffects />
 						<div className="flex min-h-screen flex-col">
 							<Navbar />
 							<main className="flex-1">{children}</main>
@@ -38,4 +40,3 @@ export default function RootLayout({
 		</html>
 	);
 }
-

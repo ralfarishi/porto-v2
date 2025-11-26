@@ -35,9 +35,9 @@ export function CertificationList() {
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true }}
 				transition={{ duration: 0.5 }}
-				className="text-3xl md:text-4xl font-heading font-bold mb-12 text-center uppercase tracking-widest"
+				className="text-4xl md:text-5xl font-heading mb-12 text-center uppercase tracking-widest text-foreground drop-shadow-[4px_4px_0px_var(--foreground)]"
 			>
-				Certifications <span className="text-primary">{"//"}</span>
+				Licensed to <span className="text-primary">Code</span>
 			</motion.h2>
 			<HardwareModules>
 				{certifications.map((cert, index) => (

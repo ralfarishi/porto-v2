@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Crosshair } from "lucide-react";
+import { Menu } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -31,146 +31,101 @@ export function Navbar() {
 	return (
 		<header
 			className={cn(
-				"sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md transition-all duration-300",
-				isScrolled ? "border-primary/50 bg-background/95" : "border-border/20"
+				"sticky top-0 z-50 w-full border-b-4 border-foreground bg-background transition-all duration-300",
+				isScrolled ? "shadow-[0px_4px_0px_0px_var(--foreground)]" : ""
 			)}
 		>
-			{/* Top Decorative Line */}
-			<div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-primary/50 to-transparent opacity-50" />
-
-			<div className="container flex h-16 items-center justify-between px-6 relative">
-				{/* Corner Markers */}
-				<div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-primary/50" />
-				<div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-primary/50" />
-				<div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-primary/50" />
-				<div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-primary/50" />
-
-				<Link href="/" className="flex items-center gap-2 mr-8 group relative z-10">
-					<div className="relative flex items-center justify-center w-8 h-8 border border-primary/30 bg-primary/5 rounded-sm group-hover:border-primary/80 transition-colors">
-						<Crosshair className="w-5 h-5 text-primary group-hover:rotate-90 transition-transform duration-500" />
+			<div className="container flex h-16 items-center justify-between px-4 md:px-6 max-w-7xl mx-auto">
+				{/* Brand */}
+				<Link href="/" className="flex items-center gap-2 group">
+					<div className="bg-primary text-primary-foreground px-2 py-1 font-heading text-xl md:text-2xl uppercase tracking-wider transform group-hover:-rotate-2 transition-transform border-2 border-foreground shadow-[2px_2px_0px_0px_var(--foreground)]">
+						AR
 					</div>
 					<div className="flex flex-col">
-						<span className="font-heading text-lg font-bold tracking-widest text-foreground uppercase group-hover:text-primary transition-colors leading-none">
-							ANTON_RAYNE
+						<span className="font-heading font-bold text-lg leading-none uppercase tracking-widest">
+							Anton Rayne
 						</span>
-						<span className="text-[10px] font-mono text-primary/50 tracking-[0.2em] leading-none group-hover:text-primary transition-colors">
-							OPERATOR
+						<span className="text-[10px] font-mono font-bold uppercase tracking-widest text-muted-foreground">
+							Vol. 1
 						</span>
 					</div>
 				</Link>
 
-				{/* Desktop Nav */}
+				{/* Desktop Nav - Comic Strip Style */}
 				<nav className="hidden md:flex items-center gap-1">
 					{navItems.map((item) => (
 						<Link
 							key={item.href}
 							href={item.href}
 							className={cn(
-								"relative px-4 py-2 text-sm font-mono tracking-widest uppercase transition-all group overflow-hidden",
-								pathname === item.href ? "text-primary" : "text-muted-foreground hover:text-primary"
+								"px-4 py-2 font-heading font-bold uppercase text-sm tracking-widest transition-all border-2 border-transparent hover:border-foreground hover:bg-accent hover:text-neutral-100 hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_var(--foreground)]",
+								pathname === item.href &&
+									"bg-foreground text-background border-foreground shadow-[4px_4px_0px_0px_var(--foreground)] -translate-y-1"
 							)}
 						>
-							<span className="relative z-10 flex items-center gap-2">
-								{pathname === item.href && (
-									<span className="text-primary animate-pulse">{">"}</span>
-								)}
-								{item.name}
-							</span>
-							{/* Hover Background */}
-							<span className="absolute inset-0 bg-primary/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out" />
-							{/* Active Underline */}
-							{pathname === item.href && (
-								<span className="absolute bottom-0 left-0 w-full h-[2px] bg-primary" />
-							)}
+							{item.name}
 						</Link>
 					))}
-					<div className="ml-4 pl-4 border-l border-border/50 h-6 flex items-center">
-						<ThemeToggle />
-					</div>
 				</nav>
 
-				{/* Mobile Nav */}
-				<div className="md:hidden flex items-center gap-4">
+				{/* Right Side Actions */}
+				<div className="flex items-center gap-4">
 					<ThemeToggle />
-					<Sheet>
-						<SheetTrigger asChild>
-							<Button
-								variant="outline"
-								size="icon"
-								className="rounded-none border-primary/50 bg-background/50 hover:bg-primary/10 hover:border-primary"
+
+					{/* Mobile Nav */}
+					<div className="md:hidden">
+						<Sheet>
+							<SheetTrigger asChild>
+								<Button
+									variant="ghost"
+									size="icon"
+									className="rounded-none border-2 border-foreground hover:bg-secondary hover:text-secondary-foreground hover:shadow-[4px_4px_0px_0px_var(--foreground)] transition-all"
+								>
+									<Menu className="h-6 w-6" />
+									<span className="sr-only">Toggle menu</span>
+								</Button>
+							</SheetTrigger>
+							<SheetContent
+								side="right"
+								className="w-[300px] border-l-4 border-foreground bg-background pt-12 p-0"
 							>
-								<Menu className="h-5 w-5 text-primary" />
-								<span className="sr-only">Toggle menu</span>
-							</Button>
-						</SheetTrigger>
-						<SheetContent
-							side="right"
-							className="w-[300px] border-l border-primary/20 bg-background/95 backdrop-blur-xl pt-4"
-						>
-							<SheetTitle className="font-heading text-xl font-bold text-left tracking-widest text-primary border-b border-primary/20 pb-4 pl-3 flex items-center gap-2">
-								<Crosshair className="w-5 h-5" />
-								NAVIGATION
-							</SheetTitle>
-							<div className="flex flex-col gap-2 items-start">
-								<SheetClose asChild>
-									<Link
-										href="/"
-										className="group w-full p-3 border border-transparent hover:border-primary/30 hover:bg-primary/5 transition-all"
-									>
-										<div className="flex items-center gap-3">
-											<span className="text-primary/50 group-hover:text-primary font-mono">00</span>
-											<span className="text-lg font-mono uppercase tracking-widest group-hover:text-primary transition-colors">
+								<SheetTitle className="sr-only">Menu</SheetTitle>
+								<div className="flex flex-col h-full">
+									<div className="p-6 border-b-4 border-foreground bg-secondary relative overflow-hidden">
+										{/* Halftone Pattern */}
+										<div className="absolute inset-0 bg-[radial-gradient(#000000_1px,transparent_1px)] bg-size-[10px_10px] opacity-10 pointer-events-none" />
+										<h2 className="font-heading text-4xl uppercase text-center relative z-10 text-secondary-foreground">
+											Menu
+										</h2>
+									</div>
+									<div className="flex flex-col p-4 gap-2">
+										<SheetClose asChild>
+											<Link
+												href="/"
+												className="p-4 text-center font-heading font-bold uppercase text-xl border-2 border-foreground hover:bg-primary hover:text-primary-foreground hover:shadow-[4px_4px_0px_0px_var(--foreground)] hover:-translate-y-1 transition-all bg-card"
+											>
 												Home
-											</span>
-										</div>
-									</Link>
-								</SheetClose>
-								{navItems.map((item, index) => (
-									<SheetClose key={item.href} asChild>
-										<Link
-											href={item.href}
-											className={cn(
-												"group w-full p-3 border transition-all",
-												pathname === item.href
-													? "border-primary/50 bg-primary/10"
-													: "border-transparent hover:border-primary/30 hover:bg-primary/5"
-											)}
-										>
-											<div className="flex items-center gap-3">
-												<span
+											</Link>
+										</SheetClose>
+										{navItems.map((item) => (
+											<SheetClose key={item.href} asChild>
+												<Link
+													href={item.href}
 													className={cn(
-														"font-mono transition-colors",
-														pathname === item.href
-															? "text-primary"
-															: "text-primary/50 group-hover:text-primary"
-													)}
-												>
-													0{index + 1}
-												</span>
-												<span
-													className={cn(
-														"text-lg font-mono uppercase tracking-widest transition-colors",
-														pathname === item.href
-															? "text-primary font-bold"
-															: "text-muted-foreground group-hover:text-primary"
+														"p-4 text-center font-heading font-bold uppercase text-xl border-2 border-foreground hover:bg-primary hover:text-primary-foreground hover:shadow-[4px_4px_0px_0px_var(--foreground)] hover:-translate-y-1 transition-all bg-card",
+														pathname === item.href &&
+															"bg-accent text-background shadow-[4px_4px_0px_0px_var(--foreground)] -translate-y-1"
 													)}
 												>
 													{item.name}
-												</span>
-											</div>
-										</Link>
-									</SheetClose>
-								))}
-							</div>
-							<div className="absolute bottom-4 left-6 right-6">
-								<div className="h-px w-full bg-primary/20 mb-4" />
-								<div className="flex justify-between text-xs font-mono text-muted-foreground">
-									<span>SYS: ONLINE</span>
-									<span>V.2.0.4</span>
+												</Link>
+											</SheetClose>
+										))}
+									</div>
 								</div>
-							</div>
-						</SheetContent>
-					</Sheet>
+							</SheetContent>
+						</Sheet>
+					</div>
 				</div>
 			</div>
 		</header>
