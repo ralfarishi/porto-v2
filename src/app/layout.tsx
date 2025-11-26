@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { ThemePreviewWidget } from "@/components/theme-preview-widget";
 
 export const metadata: Metadata = {
 	title: "Anton Rayne - Portfolio",
@@ -32,10 +33,10 @@ export default function RootLayout({
 							<main className="flex-1">{children}</main>
 							<Footer />
 						</div>
+						<ThemePreviewWidget />
 					</SmoothScroll>
 				</ThemeProvider>
 			</body>
 		</html>
 	);
 }
-

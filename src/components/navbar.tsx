@@ -53,7 +53,7 @@ export function Navbar() {
 						<span className="font-heading text-lg font-bold tracking-widest text-foreground uppercase group-hover:text-primary transition-colors leading-none">
 							ANTON_RAYNE
 						</span>
-						<span className="text-[10px] font-mono text-primary/50 tracking-[0.2em] leading-none group-hover:text-primary transition-colors">
+						<span className="text-[10px] font-mono text-primary/50 tracking-[0.2em] leading-none group-hover:text-primary transition-colors mt-1">
 							OPERATOR
 						</span>
 					</div>
