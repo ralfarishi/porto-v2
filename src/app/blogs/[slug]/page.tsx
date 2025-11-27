@@ -34,7 +34,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 			<Button
 				asChild
 				variant="ghost"
-				className="mb-8 gap-2 pl-0 hover:pl-2 transition-all font-sans uppercase tracking-wider text-foreground hover:text-primary hover:bg-transparent"
+				className="mb-8 gap-2 pl-0 hover:pl-2 transition-all font-sans uppercase tracking-wider text-foreground hover:text-neutral-100 hover:bg-accent dark:hover:bg-accent"
 			>
 				<Link href="/blogs">
 					<ArrowLeft className="h-5 w-5" /> Back to the Future
@@ -95,13 +95,13 @@ export default async function BlogPage({ params }: BlogPageProps) {
 					{adjacentBlogs.previous ? (
 						<Link
 							href={`/blogs/${adjacentBlogs.previous.slug}`}
-							className="group flex flex-col gap-2 p-6 rounded-none border-4 border-foreground bg-foreground hover:bg-primary hover:text-background transition-all relative overflow-hidden shadow-[4px_4px_0px_0px_var(--foreground)] hover:shadow-[6px_6px_0px_0px_var(--foreground)] hover:-translate-y-1"
+							className="group flex flex-col gap-2 p-6 rounded-none border-4 border-foreground bg-background hover:bg-primary hover:text-background transition-all relative overflow-hidden shadow-[4px_4px_0px_0px_var(--foreground)] hover:shadow-[6px_6px_0px_0px_var(--foreground)] hover:-translate-y-1"
 						>
-							<span className="text-sm text-background group-hover:text-background flex items-center gap-1 font-sans  uppercase tracking-wider">
-								<ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1 text-background group-hover:text-background" />
+							<span className="text-sm text-foreground group-hover:text-neutral-200 flex items-center gap-1 font-sans  uppercase tracking-wider">
+								<ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1 text-foreground group-hover:text-neutral-200" />
 								Previous Article
 							</span>
-							<span className="font-heading text-lg line-clamp-2 text-background group-hover:text-background transition-colors uppercase">
+							<span className="font-heading text-lg line-clamp-2 text-foreground group-hover:text-neutral-200 transition-colors uppercase">
 								{adjacentBlogs.previous.title}
 							</span>
 						</Link>
@@ -111,13 +111,13 @@ export default async function BlogPage({ params }: BlogPageProps) {
 					{adjacentBlogs.next && (
 						<Link
 							href={`/blogs/${adjacentBlogs.next.slug}`}
-							className="group flex flex-col gap-2 p-6 rounded-none border-4 border-foreground bg-foreground hover:bg-primary hover:text-background transition-all text-right items-end relative overflow-hidden shadow-[4px_4px_0px_0px_var(--foreground)] hover:shadow-[6px_6px_0px_0px_var(--foreground)] hover:-translate-y-1"
+							className="group flex flex-col gap-2 p-6 rounded-none border-4 border-foreground bg-background hover:bg-primary hover:text-background transition-all text-right items-end relative overflow-hidden shadow-[4px_4px_0px_0px_var(--foreground)] hover:shadow-[6px_6px_0px_0px_var(--foreground)] hover:-translate-y-1"
 						>
-							<span className="text-sm text-background group-hover:text-background flex items-center gap-1 font-sans uppercase tracking-wider">
+							<span className="text-sm text-foreground group-hover:text-neutral-200 flex items-center gap-1 font-sans uppercase tracking-wider">
 								Next Article
-								<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 text-background group-hover:text-background" />
+								<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 text-foreground group-hover:text-neutral-200" />
 							</span>
-							<span className="font-heading text-lg line-clamp-2 text-background group-hover:text-background transition-colors uppercase">
+							<span className="font-heading text-lg line-clamp-2 text-foreground group-hover:text-neutral-200 transition-colors uppercase">
 								{adjacentBlogs.next.title}
 							</span>
 						</Link>

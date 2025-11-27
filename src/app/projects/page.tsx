@@ -29,7 +29,7 @@ export default async function ProjectsPage() {
 				</div>
 			</div>
 
-			<div className="space-y-24 relative z-10">
+			<div className="md:space-y-24 space-y-7 relative z-10">
 				{projects.map((project, i) => {
 					const isEven = i % 2 === 0;
 					return (
@@ -68,7 +68,7 @@ export default async function ProjectsPage() {
 							</div>
 
 							{/* Connector Dot (Desktop) */}
-							<div className="hidden md:flex items-center justify-center w-8 h-8 bg-black border-4 border-white rounded-full absolute left-1/2 -translate-x-1/2 z-20 shadow-[0_0_0_4px_rgba(0,0,0,1)]" />
+							<div className="hidden md:flex items-center justify-center w-8 h-8 bg-foreground border-4 border-background rounded-full absolute left-1/2 -translate-x-1/2 z-20 shadow-[0_0_0_4px_var(--foreground)]" />
 
 							{/* Text Panel / Narrator Box */}
 							<div className="w-full md:w-1/2">
@@ -101,7 +101,7 @@ export default async function ProjectsPage() {
 										{project.techStack?.slice(0, 3).map((tech) => (
 											<span
 												key={tech}
-												className="px-2 py-1 bg-background border-2 border-foreground text-[10px] font-bold uppercase hover:bg-foreground hover:text-neutral-800 transition-colors cursor-default"
+												className="px-2 py-1 bg-background border-2 border-foreground text-[10px] font-bold uppercase hover:bg-foreground hover:text-background transition-colors cursor-default"
 											>
 												{tech}
 											</span>

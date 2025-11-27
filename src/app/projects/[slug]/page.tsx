@@ -115,6 +115,24 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 									</div>
 								</div>
 
+								{project.techStack && project.techStack.length > 0 && (
+									<div className="flex flex-col gap-2 pt-4 border-t-4 border-dashed border-foreground/20">
+										<span className="text-[10px] font-sans font-bold text-muted-foreground uppercase tracking-widest">
+											Mission Equipment
+										</span>
+										<div className="flex flex-wrap gap-2">
+											{project.techStack.map((tech) => (
+												<span
+													key={tech}
+													className="px-2 py-1 bg-background border-2 border-foreground text-[10px] font-bold uppercase hover:bg-foreground hover:text-background transition-colors cursor-default"
+												>
+													{tech}
+												</span>
+											))}
+										</div>
+									</div>
+								)}
+
 								<div className="space-y-3 pt-4 border-t-4 border-foreground">
 									{project.repo && (
 										<Button

@@ -35,7 +35,7 @@ export function CertificationList() {
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true }}
 				transition={{ duration: 0.5 }}
-				className="text-4xl md:text-5xl font-heading mb-12 text-center uppercase tracking-widest text-foreground drop-shadow-[4px_4px_0px_var(--foreground)]"
+				className="text-4xl md:text-5xl font-heading mb-12 text-center uppercase tracking-widest text-foreground drop-shadow-[3px_3px_0px_var(--foreground)]"
 			>
 				Licensed to <span className="text-primary">Code</span>
 			</motion.h2>

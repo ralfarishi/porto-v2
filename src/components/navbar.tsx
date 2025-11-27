@@ -60,7 +60,7 @@ export function Navbar() {
 							className={cn(
 								"px-4 py-2 font-heading font-bold uppercase text-sm tracking-widest transition-all border-2 border-transparent hover:border-foreground hover:bg-accent hover:text-neutral-100 hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_var(--foreground)]",
 								pathname === item.href &&
-									"bg-foreground text-background border-foreground shadow-[4px_4px_0px_0px_var(--foreground)] -translate-y-1"
+									"bg-accent text-neutral-100 border-foreground shadow-[4px_4px_0px_0px_var(--foreground)] -translate-y-1"
 							)}
 						>
 							{item.name}

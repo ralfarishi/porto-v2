@@ -7,7 +7,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { ComicEffects } from "@/components/comic-effects";
-import { ThemePreviewWidget } from "@/components/theme-preview-widget";
+import { FloatingControls } from "@/components/floating-controls";
 
 export const metadata: Metadata = {
 	title: "Anton Rayne - Portfolio",
@@ -35,7 +35,7 @@ export default function RootLayout({
 							<main className="flex-1">{children}</main>
 							<Footer />
 						</div>
-						<ThemePreviewWidget />
+						<FloatingControls />
 					</SmoothScroll>
 				</ThemeProvider>
 			</body>
