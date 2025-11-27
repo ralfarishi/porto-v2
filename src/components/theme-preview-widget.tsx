@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { ExternalLink } from "lucide-react";
 
 const themes = [
