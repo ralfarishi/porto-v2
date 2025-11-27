@@ -7,7 +7,7 @@ export default function ProjectsPage() {
 	return (
 		<div className="container px-4 mx-auto py-5">
 			<div className="flex flex-col items-center mb-8 mt-5">
-				<div className="text-xs font-mono text-primary/50 mb-2 tracking-[0.5em] uppercase">
+				<div className="mb:text-xs text-[11px] font-mono text-primary/50 mb-2 tracking-[0.5em] uppercase">
 					{"// ARCHIVE_ACCESS_GRANTED"}
 				</div>
 				<h1 className="text-4xl md:text-5xl font-heading font-bold text-center uppercase tracking-widest relative">
