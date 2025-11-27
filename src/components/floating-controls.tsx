@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Zap } from "lucide-react";
+import { Settings, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SourceDownloadButton } from "@/components/source-download-fab";
 import { ThemeList } from "@/components/theme-preview-widget";
@@ -37,12 +37,15 @@ export function FloatingControls() {
 			<Button
 				onClick={() => setIsOpen(!isOpen)}
 				size="icon"
-				className={cn(
-					"h-14 w-14 rounded-full border-4 border-foreground shadow-[4px_4px_0px_0px_var(--foreground)] transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_var(--foreground)] z-50",
-					isOpen ? "rotate-45" : "rotate-0"
-				)}
+				className="h-14 w-14 rounded-full border-4 border-foreground shadow-[4px_4px_0px_0px_var(--foreground)] transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_var(--foreground)] z-50 overflow-hidden pointer-events-auto"
 			>
-				<Zap className="h-8 w-8" />
+				<div className="relative z-10 transition-transform duration-300">
+					{isOpen ? (
+						<X className="h-5 w-5 text-neutral-100" />
+					) : (
+						<Settings className="h-5 w-5 text-neutral-100 group-hover:rotate-90 transition-transform duration-500" />
+					)}
+				</div>
 				<span className="sr-only">Toggle Controls</span>
 			</Button>
 		</div>
