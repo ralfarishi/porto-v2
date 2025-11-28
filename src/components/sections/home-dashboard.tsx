@@ -1,7 +1,7 @@
 "use client";
 
 import { Project, Blog } from "@/lib/mdx";
-import { ManifestList, ManifestItem } from "@/components/manifest-list";
+import { ManifestList, ManifestItem } from "@/components/features/manifest-list";
 import { Wifi } from "lucide-react";
 import Link from "next/link";
 

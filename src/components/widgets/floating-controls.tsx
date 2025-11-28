@@ -3,15 +3,15 @@
 import { useState } from "react";
 import { Settings, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SourceDownloadButton } from "@/components/source-download-fab";
-import { ThemeList } from "@/components/theme-preview-widget";
+import { SourceDownloadButton } from "@/components/widgets/source-download-fab";
+import { ThemeList } from "@/components/widgets/theme-preview-widget";
 import { cn } from "@/lib/utils";
 
 export function FloatingControls() {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
-		<div className="fixed bottom-8 right-8 z-50 flex flex-col items-end gap-4">
+		<div className="fixed bottom-8 right-8 z-50 flex flex-col items-end gap-4 pointer-events-none">
 			{/* Unified Panel */}
 			<div
 				className={cn(
@@ -37,13 +37,16 @@ export function FloatingControls() {
 			<Button
 				onClick={() => setIsOpen(!isOpen)}
 				size="icon"
-				className="h-14 w-14 rounded-full border-4 border-foreground shadow-[4px_4px_0px_0px_var(--foreground)] transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_var(--foreground)] z-50 overflow-hidden pointer-events-auto"
+				className={cn(
+					"h-14 w-14 rounded-full border-4 border-foreground shadow-[4px_4px_0px_0px_var(--foreground)] transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_var(--foreground)] z-50 overflow-hidden pointer-events-auto",
+					isOpen ? "bg-primary text-primary-foreground" : "bg-primary text-primary-foreground"
+				)}
 			>
 				<div className="relative z-10 transition-transform duration-300">
 					{isOpen ? (
-						<X className="h-5 w-5 text-neutral-100" />
+						<X className="h-6 w-6" />
 					) : (
-						<Settings className="h-5 w-5 text-neutral-100 group-hover:rotate-90 transition-transform duration-500" />
+						<Settings className="h-6 w-6 group-hover:rotate-90 transition-transform duration-500" />
 					)}
 				</div>
 				<span className="sr-only">Toggle Controls</span>

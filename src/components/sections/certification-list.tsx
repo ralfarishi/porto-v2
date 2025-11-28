@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HardwareModules, HardwareModule } from "./hardware-modules";
+import { HardwareModules, HardwareModule } from "../features/hardware-modules";
 
 const certifications = [
 	{

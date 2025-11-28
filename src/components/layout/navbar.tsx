@@ -1,12 +1,12 @@
 "use client";
 
-import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
+import { useScroll } from "@/hooks/use-scroll";
 
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/components/ui/sheet";
 
@@ -18,15 +18,7 @@ const navItems = [
 
 export function Navbar() {
 	const pathname = usePathname();
-	const [isScrolled, setIsScrolled] = React.useState(false);
-
-	React.useEffect(() => {
-		const handleScroll = () => {
-			setIsScrolled(window.scrollY > 20);
-		};
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
+	const isScrolled = useScroll(20);
 
 	return (
 		<header
