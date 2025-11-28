@@ -31,7 +31,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
 	return (
 		<div className="container px-4 mx-auto py-20 max-w-3xl">
-			<Button asChild variant="ghost" className="mb-8 gap-2 pl-0 hover:pl-2 transition-all">
+			<Button asChild variant="ghost" className="my-4 gap-2 pl-0 hover:pl-2 transition-all">
 				<Link href="/blogs">
 					<ArrowLeft className="h-4 w-4" /> Back to Articles
 				</Link>
@@ -39,7 +39,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
 			<article>
 				<div className="mb-8">
-					<div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+					<div className="flex flex-col md:flex-row md:items-center gap-4 text-sm text-muted-foreground mb-4">
 						<div className="flex items-center gap-1">
 							<Calendar className="h-4 w-4" />
 							<span>{new Date(blog.date).toLocaleDateString()}</span>
