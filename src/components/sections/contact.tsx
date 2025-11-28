@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Icons } from "@/components/icons";
-import { MagneticButton } from "@/components/magnetic-button";
+import { Icons } from "@/components/ui/icons";
+import { MagneticButton } from "@/components/ui/magnetic-button";
 
 export function Contact() {
 	return (

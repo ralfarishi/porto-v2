@@ -1,6 +1,6 @@
 "use client";
 
-import { BentoGrid, BentoGridItem } from "@/components/bento-grid";
+import { BentoGrid, BentoGridItem } from "@/components/features/bento-grid";
 import { Project, Blog } from "@/lib/mdx";
 import Image from "next/image";
 import { motion } from "framer-motion";

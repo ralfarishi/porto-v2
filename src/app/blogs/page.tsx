@@ -1,5 +1,5 @@
 import { getBlogs } from "@/lib/mdx";
-import { BentoGrid, BentoGridItem } from "@/components/bento-grid";
+import { BentoGrid, BentoGridItem } from "@/components/features/bento-grid";
 import { Newspaper } from "lucide-react";
 
 export default function BlogsPage() {

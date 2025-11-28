@@ -1,7 +1,7 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { cn } from "@/lib/utils";
-import { Callout } from "@/components/callout";
-import { Gallery } from "@/components/gallery";
+import { Callout } from "@/components/ui/callout";
+import { Gallery } from "@/components/features/gallery";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";

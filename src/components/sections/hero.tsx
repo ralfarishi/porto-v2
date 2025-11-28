@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { MagneticButton } from "@/components/magnetic-button";
+import { MagneticButton } from "@/components/ui/magnetic-button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 

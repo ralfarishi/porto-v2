@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { Settings, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SourceDownloadButton } from "@/components/source-download-fab";
+import { SourceDownloadButton } from "@/components/widgets/source-download-fab";
 import { cn } from "@/lib/utils";
 import { ThemePreviewButton } from "./theme-preview-button";
-import { Icons } from "./icons";
+import { Icons } from "../ui/icons";
 
 export function FloatingControls() {
 	const [isOpen, setIsOpen] = useState(false);

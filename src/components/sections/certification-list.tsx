@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { MagneticButton } from "./magnetic-button";
+import { MagneticButton } from "../ui/magnetic-button";
 
 const certifications = [
 	{

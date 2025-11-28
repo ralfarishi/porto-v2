@@ -1,5 +1,5 @@
 import { getProjects } from "@/lib/mdx";
-import { BentoGrid, BentoGridItem } from "@/components/bento-grid";
+import { BentoGrid, BentoGridItem } from "@/components/features/bento-grid";
 import Image from "next/image";
 import { SquareCode } from "lucide-react";
 

@@ -1,9 +1,10 @@
-import { Hero } from "@/components/hero";
-import { HomeBento } from "@/components/home-bento";
-import { CertificationList } from "@/components/certification-list";
-import { Contact } from "@/components/contact";
-import { getProjects, getBlogs } from "@/lib/mdx";
-import { AboutSection } from "@/components/about-section";
+import { HomeBento } from "@/components/sections/home-bento";
+import { AboutSection } from "@/components/sections/about-section";
+import { CertificationList } from "@/components/sections/certification-list";
+import { Contact } from "@/components/sections/contact";
+import { Hero } from "@/components/sections/hero";
+
+import { getBlogs, getProjects } from "@/lib/mdx";
 
 export default function Home() {
 	const projects = getProjects().slice(0, 4);

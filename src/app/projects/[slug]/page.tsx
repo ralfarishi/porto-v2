@@ -6,8 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Suspense } from "react";
-import { CommitInfo } from "@/components/commit-info";
-import { MdxContent } from "@/components/mdx-content";
+import { CommitInfo } from "@/components/features/commit-info";
+import { MdxContent } from "@/components/markdown/mdx-content";
 
 interface ProjectPageProps {
 	params: Promise<{
