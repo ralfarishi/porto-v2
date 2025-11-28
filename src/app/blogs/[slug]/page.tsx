@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, Calendar, Tag } from "lucide-react";
 import { getBlog, getBlogs, getAdjacentBlogs } from "@/lib/mdx";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MdxContent } from "@/components/mdx-content";
+import { MdxContent } from "@/components/markdown/mdx-content";
 import { Suspense } from "react";
 
 interface BlogPageProps {

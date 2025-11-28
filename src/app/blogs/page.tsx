@@ -72,7 +72,7 @@ export default function BlogsPage() {
 							{/* Text Panel / Narrator Box */}
 							<div className="w-full md:w-1/2">
 								<div
-									className={`bg-white border-4 border-foreground p-6 md:p-8 shadow-[8px_8px_0px_0px_var(--foreground)] relative ${
+									className={`bg-background border-4 border-foreground p-6 md:p-8 shadow-[8px_8px_0px_0px_var(--foreground)] relative ${
 										isEven ? "md:-rotate-1" : "md:rotate-1"
 									}`}
 								>
@@ -83,7 +83,7 @@ export default function BlogsPage() {
 										</span>
 									</div>
 
-									<h2 className="font-heading text-neutral-600 text-2xl md:text-3xl uppercase leading-tight mb-4">
+									<h2 className="font-heading text-foreground text-2xl md:text-3xl uppercase leading-tight mb-4">
 										<Link
 											href={`/blogs/${blog.slug}`}
 											className="hover:text-primary transition-colors hover:underline decoration-4 underline-offset-4"
@@ -100,7 +100,7 @@ export default function BlogsPage() {
 										{blog.tags?.slice(0, 3).map((tag) => (
 											<span
 												key={tag}
-												className="px-2 py-1 bg-neutral-100 border-2 border-black text-neutral-600 text-[10px] font-bold uppercase hover:bg-black hover:text-white transition-colors cursor-default"
+												className="px-2 py-1 bg-background border-2 border-foreground text-foreground text-[10px] font-bold uppercase hover:bg-foreground hover:text-background transition-colors cursor-default"
 											>
 												{tag}
 											</span>

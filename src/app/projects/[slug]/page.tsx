@@ -4,9 +4,9 @@ import { ArrowRight, Globe, Cpu, Database } from "lucide-react";
 import { getProject, getProjects } from "@/lib/mdx";
 import { Button } from "@/components/ui/button";
 import { Suspense } from "react";
-import { CommitInfo } from "@/components/commit-info";
-import { MdxContent } from "@/components/mdx-content";
-import { Icons } from "@/components/icons";
+import { CommitInfo } from "@/components/features/commit-info";
+import { MdxContent } from "@/components/markdown/mdx-content";
+import { Icons } from "@/components/ui/icons";
 
 interface ProjectPageProps {
 	params: Promise<{

@@ -1,9 +1,9 @@
-import { Hero } from "@/components/hero";
-import { HomeDashboard } from "@/components/home-dashboard";
-import { CertificationList } from "@/components/certification-list";
-import { Contact } from "@/components/contact";
+import { Hero } from "@/components/sections/hero";
+import { HomeDashboard } from "@/components/sections/home-dashboard";
+import { CertificationList } from "@/components/sections/certification-list";
+import { Contact } from "@/components/sections/contact";
 import { getProjects, getBlogs } from "@/lib/mdx";
-import { AboutSection } from "@/components/about-section";
+import { AboutSection } from "@/components/sections/about-section";
 
 export default function Home() {
 	const projects = getProjects().slice(0, 4);
