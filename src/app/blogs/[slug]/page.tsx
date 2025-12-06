@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Calendar } from "lucide-react";
 import { getBlog, getBlogs, getAdjacentBlogs } from "@/lib/mdx";
@@ -11,6 +12,33 @@ interface BlogPageProps {
 	params: Promise<{
 		slug: string;
 	}>;
+}
+
+export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
+	const { slug } = await params;
+	const blog = getBlog(slug);
+
+	if (!blog) {
+		return {};
+	}
+
+	return {
+		title: blog.title,
+		description: blog.description,
+		openGraph: {
+			title: blog.title,
+			description: blog.description,
+			type: "article",
+			publishedTime: blog.date,
+			images: blog.image ? [{ url: blog.image }] : undefined,
+		},
+		twitter: {
+			card: "summary_large_image",
+			title: blog.title,
+			description: blog.description,
+			images: blog.image ? [blog.image] : undefined,
+		},
+	};
 }
 
 export async function generateStaticParams() {

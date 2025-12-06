@@ -204,4 +204,3 @@ code[data-rehype-pretty-code-figure] {
 	counter-increment: line;
 	content: counter(line);
 }
-

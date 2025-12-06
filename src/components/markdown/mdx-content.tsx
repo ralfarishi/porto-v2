@@ -1,6 +1,7 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { cn } from "@/lib/utils";
 import { Callout } from "@/components/ui/callout";
+import { CodeBlock } from "@/components/ui/code-block";
 import { Gallery } from "@/components/features/gallery";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
@@ -39,7 +40,7 @@ export function MdxContent({ mdxSource }: MdxContentProps) {
 			/>
 		),
 		p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
-			<p className={cn("leading-7 not-first:mt-6", className)} {...props} />
+			<p className={cn("leading-7 not-first:mt-1.5", className)} {...props} />
 		),
 		ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
 			<ul className={cn("my-6 ml-6 list-disc [&>li]:mt-2", className)} {...props} />
@@ -62,9 +63,7 @@ export function MdxContent({ mdxSource }: MdxContentProps) {
 				{...props}
 			/>
 		),
-		pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
-			<pre className={cn("overflow-x-auto rounded-lg border p-2", className)} {...props} />
-		),
+		pre: CodeBlock,
 		Callout,
 		Gallery,
 		Galleries: Gallery,
